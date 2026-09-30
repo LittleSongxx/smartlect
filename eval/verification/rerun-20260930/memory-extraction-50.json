@@ -1,0 +1,839 @@
+{
+  "model": "deepseek-flash",
+  "cases": 50,
+  "passed": 50,
+  "results": [
+    {
+      "id": "noise",
+      "facts": [],
+      "checks": {
+        "count": true,
+        "scope": true,
+        "noise": true,
+        "polarity": true,
+        "conflict": true
+      },
+      "passed": true
+    },
+    {
+      "id": "temporary",
+      "facts": [],
+      "checks": {
+        "count": true,
+        "scope": true,
+        "noise": true,
+        "polarity": true,
+        "conflict": true
+      },
+      "passed": true
+    },
+    {
+      "id": "third_person",
+      "facts": [],
+      "checks": {
+        "count": true,
+        "scope": true,
+        "noise": true,
+        "polarity": true,
+        "conflict": true
+      },
+      "passed": true
+    },
+    {
+      "id": "hypothetical",
+      "facts": [],
+      "checks": {
+        "count": true,
+        "scope": true,
+        "noise": true,
+        "polarity": true,
+        "conflict": true
+      },
+      "passed": true
+    },
+    {
+      "id": "injection",
+      "facts": [],
+      "checks": {
+        "count": true,
+        "scope": true,
+        "noise": true,
+        "polarity": true,
+        "conflict": true
+      },
+      "passed": true
+    },
+    {
+      "id": "stable_noise",
+      "facts": [
+        {
+          "kind": "like",
+          "statement": "喜欢小香风连衣裙",
+          "conflicts": []
+        }
+      ],
+      "checks": {
+        "count": true,
+        "scope": true,
+        "noise": true,
+        "polarity": true,
+        "conflict": true
+      },
+      "passed": true
+    },
+    {
+      "id": "negative_scope",
+      "facts": [
+        {
+          "kind": "dislike",
+          "statement": "不喜欢塑料食品盒",
+          "conflicts": []
+        }
+      ],
+      "checks": {
+        "count": true,
+        "scope": true,
+        "noise": true,
+        "polarity": true,
+        "conflict": true
+      },
+      "passed": true
+    },
+    {
+      "id": "negative",
+      "facts": [
+        {
+          "kind": "dislike",
+          "statement": "不喜欢羊毛围巾",
+          "conflicts": []
+        }
+      ],
+      "checks": {
+        "count": true,
+        "scope": true,
+        "noise": true,
+        "polarity": true,
+        "conflict": true
+      },
+      "passed": true
+    },
+    {
+      "id": "duplicate",
+      "facts": [
+        {
+          "kind": "like",
+          "statement": "喜欢蓝色衣服",
+          "conflicts": []
+        }
+      ],
+      "checks": {
+        "count": true,
+        "scope": true,
+        "noise": true,
+        "polarity": true,
+        "conflict": true
+      },
+      "passed": true
+    },
+    {
+      "id": "scope_distinction",
+      "facts": [
+        {
+          "kind": "like",
+          "statement": "喜欢蓝色上衣",
+          "conflicts": []
+        },
+        {
+          "kind": "like",
+          "statement": "裤子偏爱黑色",
+          "conflicts": []
+        }
+      ],
+      "checks": {
+        "count": true,
+        "scope": true,
+        "noise": true,
+        "polarity": true,
+        "conflict": true
+      },
+      "passed": true
+    },
+    {
+      "id": "conflict",
+      "facts": [
+        {
+          "kind": "dislike",
+          "statement": "不喜欢蓝色上衣",
+          "conflicts": [
+            "blue-shirt"
+          ]
+        }
+      ],
+      "checks": {
+        "count": true,
+        "scope": true,
+        "noise": true,
+        "polarity": true,
+        "conflict": true
+      },
+      "passed": true
+    },
+    {
+      "id": "not_conflict",
+      "facts": [
+        {
+          "kind": "dislike",
+          "statement": "不喜欢蓝色裤子",
+          "conflicts": []
+        }
+      ],
+      "checks": {
+        "count": true,
+        "scope": true,
+        "noise": true,
+        "polarity": true,
+        "conflict": true
+      },
+      "passed": true
+    },
+    {
+      "id": "noise_weather",
+      "facts": [],
+      "checks": {
+        "count": true,
+        "scope": true,
+        "noise": true,
+        "polarity": true,
+        "conflict": true
+      },
+      "passed": true
+    },
+    {
+      "id": "noise_feedback",
+      "facts": [],
+      "checks": {
+        "count": true,
+        "scope": true,
+        "noise": true,
+        "polarity": true,
+        "conflict": true
+      },
+      "passed": true
+    },
+    {
+      "id": "noise_faq",
+      "facts": [],
+      "checks": {
+        "count": true,
+        "scope": true,
+        "noise": true,
+        "polarity": true,
+        "conflict": true
+      },
+      "passed": true
+    },
+    {
+      "id": "temp_gift",
+      "facts": [],
+      "checks": {
+        "count": true,
+        "scope": true,
+        "noise": true,
+        "polarity": true,
+        "conflict": true
+      },
+      "passed": true
+    },
+    {
+      "id": "temp_once",
+      "facts": [],
+      "checks": {
+        "count": true,
+        "scope": true,
+        "noise": true,
+        "polarity": true,
+        "conflict": true
+      },
+      "passed": true
+    },
+    {
+      "id": "temp_trip",
+      "facts": [],
+      "checks": {
+        "count": true,
+        "scope": true,
+        "noise": true,
+        "polarity": true,
+        "conflict": true
+      },
+      "passed": true
+    },
+    {
+      "id": "third_family",
+      "facts": [],
+      "checks": {
+        "count": true,
+        "scope": true,
+        "noise": true,
+        "polarity": true,
+        "conflict": true
+      },
+      "passed": true
+    },
+    {
+      "id": "third_friend",
+      "facts": [],
+      "checks": {
+        "count": true,
+        "scope": true,
+        "noise": true,
+        "polarity": true,
+        "conflict": true
+      },
+      "passed": true
+    },
+    {
+      "id": "hypo_if",
+      "facts": [],
+      "checks": {
+        "count": true,
+        "scope": true,
+        "noise": true,
+        "polarity": true,
+        "conflict": true
+      },
+      "passed": true
+    },
+    {
+      "id": "hypo_maybe",
+      "facts": [],
+      "checks": {
+        "count": true,
+        "scope": true,
+        "noise": true,
+        "polarity": true,
+        "conflict": true
+      },
+      "passed": true
+    },
+    {
+      "id": "inject_secrets",
+      "facts": [],
+      "checks": {
+        "count": true,
+        "scope": true,
+        "noise": true,
+        "polarity": true,
+        "conflict": true
+      },
+      "passed": true
+    },
+    {
+      "id": "inject_role",
+      "facts": [],
+      "checks": {
+        "count": true,
+        "scope": true,
+        "noise": true,
+        "polarity": true,
+        "conflict": true
+      },
+      "passed": true
+    },
+    {
+      "id": "stable_greet2",
+      "facts": [
+        {
+          "kind": "like",
+          "statement": "喜欢轻便的旅行装备",
+          "conflicts": []
+        }
+      ],
+      "checks": {
+        "count": true,
+        "scope": true,
+        "noise": true,
+        "polarity": true,
+        "conflict": true
+      },
+      "passed": true
+    },
+    {
+      "id": "stable_chatty",
+      "facts": [
+        {
+          "kind": "like",
+          "statement": "喜欢保温杯",
+          "conflicts": []
+        }
+      ],
+      "checks": {
+        "count": true,
+        "scope": true,
+        "noise": true,
+        "polarity": true,
+        "conflict": true
+      },
+      "passed": true
+    },
+    {
+      "id": "stable_polite",
+      "facts": [
+        {
+          "kind": "like",
+          "statement": "喜欢静音的键盘和鼠标",
+          "conflicts": []
+        }
+      ],
+      "checks": {
+        "count": true,
+        "scope": true,
+        "noise": true,
+        "polarity": true,
+        "conflict": true
+      },
+      "passed": true
+    },
+    {
+      "id": "stable_neg",
+      "facts": [
+        {
+          "kind": "dislike",
+          "statement": "不喜欢太重的行李箱",
+          "conflicts": []
+        }
+      ],
+      "checks": {
+        "count": true,
+        "scope": true,
+        "noise": true,
+        "polarity": true,
+        "conflict": true
+      },
+      "passed": true
+    },
+    {
+      "id": "neg_scope_watch",
+      "facts": [
+        {
+          "kind": "dislike",
+          "statement": "不喜欢皮质表带",
+          "conflicts": []
+        },
+        {
+          "kind": "like",
+          "statement": "可以接受皮钱包",
+          "conflicts": []
+        }
+      ],
+      "checks": {
+        "count": true,
+        "scope": true,
+        "noise": true,
+        "polarity": true,
+        "conflict": true
+      },
+      "passed": true
+    },
+    {
+      "id": "neg_scope_glass",
+      "facts": [
+        {
+          "kind": "dislike",
+          "statement": "不喜欢玻璃材质的商品，玻璃杯除外",
+          "conflicts": []
+        }
+      ],
+      "checks": {
+        "count": true,
+        "scope": true,
+        "noise": true,
+        "polarity": true,
+        "conflict": true
+      },
+      "passed": true
+    },
+    {
+      "id": "neg_scope_light",
+      "facts": [
+        {
+          "kind": "like",
+          "statement": "偏好在浅色系商品",
+          "conflicts": []
+        }
+      ],
+      "checks": {
+        "count": true,
+        "scope": true,
+        "noise": true,
+        "polarity": true,
+        "conflict": true
+      },
+      "passed": true
+    },
+    {
+      "id": "neg_alcohol",
+      "facts": [
+        {
+          "kind": "dislike",
+          "statement": "不喜欢含酒精的护肤品",
+          "conflicts": []
+        }
+      ],
+      "checks": {
+        "count": true,
+        "scope": true,
+        "noise": true,
+        "polarity": true,
+        "conflict": true
+      },
+      "passed": true
+    },
+    {
+      "id": "neg_glossy",
+      "facts": [
+        {
+          "kind": "dislike",
+          "statement": "不喜欢亮面商品，因为反光让人烦躁",
+          "conflicts": []
+        }
+      ],
+      "checks": {
+        "count": true,
+        "scope": true,
+        "noise": true,
+        "polarity": true,
+        "conflict": true
+      },
+      "passed": true
+    },
+    {
+      "id": "neg_fabric",
+      "facts": [
+        {
+          "kind": "dislike",
+          "statement": "不喜欢化纤材质的床品",
+          "conflicts": []
+        }
+      ],
+      "checks": {
+        "count": true,
+        "scope": true,
+        "noise": true,
+        "polarity": true,
+        "conflict": true
+      },
+      "passed": true
+    },
+    {
+      "id": "dup_wood",
+      "facts": [
+        {
+          "kind": "like",
+          "statement": "喜欢木质家具",
+          "conflicts": []
+        }
+      ],
+      "checks": {
+        "count": true,
+        "scope": true,
+        "noise": true,
+        "polarity": true,
+        "conflict": true
+      },
+      "passed": true
+    },
+    {
+      "id": "dup_toothpaste",
+      "facts": [
+        {
+          "kind": "dislike",
+          "statement": "不喜欢甜味的牙膏",
+          "conflicts": []
+        }
+      ],
+      "checks": {
+        "count": true,
+        "scope": true,
+        "noise": true,
+        "polarity": true,
+        "conflict": true
+      },
+      "passed": true
+    },
+    {
+      "id": "scope_home_camp",
+      "facts": [
+        {
+          "kind": "like",
+          "statement": "喜欢家里用餐用陶瓷餐具",
+          "conflicts": []
+        },
+        {
+          "kind": "like",
+          "statement": "喜欢露营用钛餐具",
+          "conflicts": []
+        }
+      ],
+      "checks": {
+        "count": true,
+        "scope": true,
+        "noise": true,
+        "polarity": true,
+        "conflict": true
+      },
+      "passed": true
+    },
+    {
+      "id": "scope_bag",
+      "facts": [
+        {
+          "kind": "like",
+          "statement": "喜欢双肩通勤包",
+          "conflicts": []
+        },
+        {
+          "kind": "like",
+          "statement": "喜欢斜挎的运动包",
+          "conflicts": []
+        }
+      ],
+      "checks": {
+        "count": true,
+        "scope": true,
+        "noise": true,
+        "polarity": true,
+        "conflict": true
+      },
+      "passed": true
+    },
+    {
+      "id": "scope_keyboard",
+      "facts": [
+        {
+          "kind": "dislike",
+          "statement": "不喜欢在办公室使用机械键盘",
+          "conflicts": []
+        }
+      ],
+      "checks": {
+        "count": true,
+        "scope": true,
+        "noise": true,
+        "polarity": true,
+        "conflict": true
+      },
+      "passed": true
+    },
+    {
+      "id": "scope_season",
+      "facts": [
+        {
+          "kind": "like",
+          "statement": "喜欢冬天穿加绒的衣服",
+          "conflicts": []
+        },
+        {
+          "kind": "like",
+          "statement": "喜欢夏天穿速干的衣服",
+          "conflicts": []
+        }
+      ],
+      "checks": {
+        "count": true,
+        "scope": true,
+        "noise": true,
+        "polarity": true,
+        "conflict": true
+      },
+      "passed": true
+    },
+    {
+      "id": "conflict_style",
+      "facts": [
+        {
+          "kind": "dislike",
+          "statement": "长期不喜欢小香风连衣裙",
+          "conflicts": [
+            "style-1"
+          ]
+        }
+      ],
+      "checks": {
+        "count": true,
+        "scope": true,
+        "noise": true,
+        "polarity": true,
+        "conflict": true
+      },
+      "passed": true
+    },
+    {
+      "id": "conflict_pants",
+      "facts": [
+        {
+          "kind": "like",
+          "statement": "喜欢黑色裤子",
+          "conflicts": [
+            "pants-1"
+          ]
+        }
+      ],
+      "checks": {
+        "count": true,
+        "scope": true,
+        "noise": true,
+        "polarity": true,
+        "conflict": true
+      },
+      "passed": true
+    },
+    {
+      "id": "conflict_brand",
+      "facts": [
+        {
+          "kind": "dislike",
+          "statement": "不喜欢该品牌的东西",
+          "conflicts": [
+            "brand-x"
+          ]
+        }
+      ],
+      "checks": {
+        "count": true,
+        "scope": true,
+        "noise": true,
+        "polarity": true,
+        "conflict": true
+      },
+      "passed": true
+    },
+    {
+      "id": "nconf_hat",
+      "facts": [
+        {
+          "kind": "dislike",
+          "statement": "不喜欢蓝色裤子",
+          "conflicts": []
+        }
+      ],
+      "checks": {
+        "count": true,
+        "scope": true,
+        "noise": true,
+        "polarity": true,
+        "conflict": true
+      },
+      "passed": true
+    },
+    {
+      "id": "nconf_cup",
+      "facts": [
+        {
+          "kind": "like",
+          "statement": "喜欢保温杯",
+          "conflicts": []
+        }
+      ],
+      "checks": {
+        "count": true,
+        "scope": true,
+        "noise": true,
+        "polarity": true,
+        "conflict": true
+      },
+      "passed": true
+    },
+    {
+      "id": "nconf_sock",
+      "facts": [
+        {
+          "kind": "dislike",
+          "statement": "运动时不喜欢穿棉袜",
+          "conflicts": []
+        }
+      ],
+      "checks": {
+        "count": true,
+        "scope": true,
+        "noise": true,
+        "polarity": true,
+        "conflict": true
+      },
+      "passed": true
+    },
+    {
+      "id": "brand_coffee",
+      "facts": [
+        {
+          "kind": "like",
+          "statement": "喜欢并长期固定喝同一牌子的挂耳咖啡",
+          "conflicts": []
+        }
+      ],
+      "checks": {
+        "count": true,
+        "scope": true,
+        "noise": true,
+        "polarity": true,
+        "conflict": true
+      },
+      "passed": true
+    },
+    {
+      "id": "size_shoe",
+      "facts": [
+        {
+          "kind": "like",
+          "statement": "只购买39码的鞋",
+          "conflicts": []
+        }
+      ],
+      "checks": {
+        "count": true,
+        "scope": true,
+        "noise": true,
+        "polarity": true,
+        "conflict": true
+      },
+      "passed": true
+    },
+    {
+      "id": "budget_earphone",
+      "facts": [
+        {
+          "kind": "like",
+          "statement": "喜欢性价比高的耳机",
+          "conflicts": []
+        }
+      ],
+      "checks": {
+        "count": true,
+        "scope": true,
+        "noise": true,
+        "polarity": true,
+        "conflict": true
+      },
+      "passed": true
+    },
+    {
+      "id": "emoji_shoes",
+      "facts": [
+        {
+          "kind": "like",
+          "statement": "喜欢帆布鞋",
+          "conflicts": []
+        }
+      ],
+      "checks": {
+        "count": true,
+        "scope": true,
+        "noise": true,
+        "polarity": true,
+        "conflict": true
+      },
+      "passed": true
+    }
+  ],
+  "limitation": "小样本规则评测；不代表完整事实蕴含、召回质量或生产准确率"
+}

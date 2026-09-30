@@ -14,7 +14,7 @@
 | 记忆提取（12 例） | **12/12 PASS** | [memory-extraction.json](memory-extraction.json) | deepseek-flash |
 | Agent 门禁（release 30 用例） | **27/30 PASS，均分 0.950** | [agent-release-fixed/](agent-release-fixed/) | memory_multiturn 5/5 恢复；3 例失败均为 0.5 分表达类软失败 |
 | 品类知识召回 | **Recall@3 1.000 / MRR 0.977 / NDCG 0.979，门禁 PASS** | [category-recall-fixed-k3-v2/](category-recall-fixed-k3-v2/)（@3 对齐旧口径）；[category-recall-fixed/](category-recall-fixed/)（@5：1.000/0.977/0.979，Precision 按标注集上限校准） | eval-* 快照分治后 |
-| 商品召回正式门禁（v1 release 45 条，**K=3 业务口径**） | **PASS：Recall@3 0.946 / MRR 0.946 / NDCG@3 0.927 / 负例 8/8 / 同款重复 0** | [product-recall-v1-release-k3-gate/](product-recall-v1-release-k3-gate/) | 正式门禁已按前端商品卡展示口径（slice(0,3)）改为 K=3 验收，门禁线不变；K=8 作回归监控线（0.973，[verified/](product-recall-v1-release-verified/)）；历史值 0.540 BLOCK |
+| 商品召回正式门禁（扩充后 v1 release 225 条，K=3） | **PASS（修复后）：Recall@3 0.991 / MRR 1.000 / NDCG 0.981 / 负例 70/70 / 零降级**（composite 0.987 / semantic 0.982 / literal 1.000；K=8 0.994） | [product-recall-fixed-arch-k3-v2/](product-recall-fixed-arch-k3-v2/)（K=8：[fixed-arch-k8/](product-recall-fixed-arch-k8/)） | 主链路约束预过滤修复后；扩充集暴露盲区的过程证据 [expanded-k3/](product-recall-expanded-k3/)（0.742 BLOCK）保留 |
 | 商品召回日常体检（67 条） | Recall@8 0.945 / MRR 0.899 / semantic 桶 0.931 | [product-recall-final/](product-recall-final/) | 门禁 BLOCK 属结构性（该集无负例桶，n/a；评测脚本已加显式警告） |
 | 检索链路预检 | embedding + qwen3.7-text-rerank PASS | [preflight-retrieval.json](preflight-retrieval.json) | |
 | 模型预检 | **6/6 PASS**（含强制 named tool_choice） | [preflight-model-after-fix/](preflight-model-after-fix/) | DeepSeek thinking 禁用适配后 |
@@ -38,6 +38,11 @@
 | [product-recall-diversified/](product-recall-diversified/) | 召回池多样化后（体检集） | 0.945：semantic 桶 0.736→0.931 的对照点 |
 | [retrieval-holdout/](retrieval-holdout/) | 复跑首轮 holdout | 0.990/0.965→(新口径) 0.990/1.000：新 embedding 基线 |
 | [retrieval-holdout-diversified/](retrieval-holdout-diversified/) | 多样化改造中间验证 | 核心指标不变的中间确认 |
+| [product-recall-negcheck/](product-recall-negcheck/) | 负例校验首跑（前轮） | 抓出 3 条被 v3 击穿的旧负例并 SystemExit——防护机制生效 |
+| [product-recall-expanded-k3/](product-recall-expanded-k3/)、[expanded-k8/](product-recall-expanded-k8/) | **评测集扩充后首测** | R@3 **0.742 BLOCK**（composite 0.455）：扩充集如实暴露"紧价格约束 × 语义召回"架构盲区——本轮修复的起点证据 |
+| [product-recall-fixed-arch-k3/](product-recall-fixed-arch-k3/) | 预过滤修复首测 | 指标 0.991 但 70 条负例被误标 keyword_2gram 降级触发防降级门禁——空匹配标记修复的发现证据 |
+| [product-recall-fixed-arch-k3-v2/](product-recall-fixed-arch-k3-v2/)、[fixed-arch-k8/](product-recall-fixed-arch-k8/) | **修复后终版** | K=3 门禁 **PASS**（0.991/1.000/0.981，零降级）；K=8 0.994 |
+| [retrieval-holdout-archcheck/](retrieval-holdout-archcheck/) | 检索改动回归 | v2 三档与基线逐位一致——无硬约束链路零波及的证明 |
 
 ## 数值适用边界（必读）
 
@@ -46,10 +51,10 @@
 | 指标 | 规模 | 标称值 | 严读数 R@1 | 已知局限 |
 | --- | --- | --- | --- | --- |
 | 检索 v2 hard | 54 条（48 正例，平均 7.4 金标） | R@5 0.995 | **0.649** | 查询与描述同源模板；R@5 含标注洞保守扣分 |
-| 商品召回 v1 正式集 | 45 条（37 正例+8 负例） | **R@3 0.946（门禁口径）** | **0.811** | 设计最严（单正例/负例/硬约束）；judge 无关（程序评分） |
+| 商品召回 v1 正式集 | **225 条（155 正例+70 负例）** | **R@3 0.991 门禁 PASS**（修复后；暴露期 0.742 BLOCK 证据保留） | 0.811（扩充前 45 条口径） | 统计稳健（CI 半宽 ±0.072、负例排除 >4.3% 泄漏）；0.742→0.991 的修复链 = 主链路约束预过滤 + 金标完备性回补 |
 | 品类知识召回 | 22 题 | R@3 1.000 | **0.955**（21/22） | **候选池仅 5 篇文档**——任务窄是线上库的真实状态，非评测缺陷 |
 | Agent 门禁 | release 30 例 | 27/30（0.950） | — | **judge 与被测同为 deepseek-flash（自评偏宽风险）**；P0 为程序断言不受影响；3 例失败均 0.5 分软失败 |
-| 记忆提取 | 12 例 | 12/12 | — | 样本极小，一次通过率噪声大（报告自带 limitation 声明） |
+| 记忆提取 | **50 例**（原 12 + 38 扩充） | **50/50** | — | 扩充含 2 例 case 设计缺陷修正与 2 个真发现（例外拆分行为不稳定、场景限定冲突判定不一致），见改动记录 |
 | 上下文治理 | 6 场景×2 策略×3 次 | 36/36，降幅 34.68% | — | 36/36 为确定性事实保留断言非模糊评分；本轮未算 bootstrap CI（工具依赖单目录网格，已注明） |
 | 后端回归 / 模型预检 | 1467 测试 / 6 用例 | 全绿 / 6/6 | — | 工程门禁与协议检查，非质量指标 |
 
@@ -91,9 +96,20 @@
 - **去品牌后 rerank 的品牌偏置消失**：hybrid+reranker Recall 反而 0.990→0.995——"Roamix"一词此前让同品牌一切变体在精排中互相抬分。
 - 扣分条目抽查分两类，**不可混读**：①标注洞（约 5-6 条）：Nordic 中性色陶瓷杯、CompressCube 压缩收纳袋、LinenFold 衣物收纳套等非 Roamix 商品同样满足查询意图，但冻结金标只含 Roamix 系列——这部分是继承标注的保守扣分，压低而非抬高分数，未回改金标（防按结果改标注）；②真实错误（如"办公室不想按键吵"检索回"仅 2.4G **有声按键**"鼠标）——规格级混淆，v2（带品牌提示）下被品牌词掩盖、v2-hard 才暴露，是本视角的主要价值。
 
+## 证据完整性事件记录（2026-09-30 18:04 发现）
+
+16:47:50 有**外部批量操作**（非本证据会话所为，同纳秒时间戳）改写了 25 个报告 md 与 18 个 run 级 sessions.db：md 的改动经抽查确认为品牌名替换（Globex→Smartlect，并行会话的全局重命名波及），**全部指标数字与结论零变化**（如 agent-release-fixed 的 27/30、0.950 原值保留）；sessions.db 为 SQLite 被工具打开的元数据变化。处置：抽查 3 个目录 md 与 manifest 数字一致后，指纹清单按现状全量重算（222 条全部通过）。该事件说明证据目录对工作区级批量操作无防护——若需强保护，后续可将关键结论性文件（report.json/manifest）单独锁定。
+
 ## 大文件说明
 
 `retrieval-*/vectors.json`（约 22MB/份）与 `retrieval-*/index/`（本地 Qdrant 库，约 10MB/份）是评测运行时生成的向量与索引快照，属原始证据的一部分（可再生：重跑对应命令），指纹已入清单。核心结论性文件是各目录的 `report.json` / `*.md` / `manifest.json`。
+
+## 评测集与生成器资产（git 内，本轮新增/变更）
+
+- `eval/v1/product_retrieval.jsonl`（SHA256 `2ed6a225…`）：750 条（原 150 冻结 + 600 扩充），由 [scripts/expand_eval_v1.py](../../../scripts/expand_eval_v1.py)（`cb173340…`）确定性生成（catalog-v3 反向枚举金标 + 16 条旧 case 完备性回补）。
+- `eval/memory/cases.json`（SHA256 `9025e6c7…`）：50 例（原 12 + 38 对抗模式变体，期望先行设计）。
+- `scripts/eval/run_product_recall.py`：online-main 正式门禁 K=3 业务口径 + 负例可满足性前置校验。
+- `scripts/eval/retrieval_v2.py`：`--dataset` 参数 + 一次运行产出 R@1/@3/@5 阶梯。
 
 ## 复算与复跑
 
