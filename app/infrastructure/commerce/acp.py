@@ -13,7 +13,7 @@ import uuid
 import httpx
 
 VERSION = "2026-04-17"
-SANDBOX_TOKEN = "globex-sandbox-only"
+SANDBOX_TOKEN = "smartlect-sandbox-only"
 
 
 def digest(value):

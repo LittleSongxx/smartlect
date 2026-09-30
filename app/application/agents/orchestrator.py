@@ -147,7 +147,7 @@ class MainAgentOrchestrator:
         # 两种 HTTP 入口共用锁，防止同进程并发修改同一个 AgentState。
         self._session_locks: dict[str, asyncio.Lock] = {}
         self._native_observer: ContextVar[Callable[[Any], None] | None] = ContextVar(
-            "globex_native_event_observer", default=None,
+            "smartlect_native_event_observer", default=None,
         )
 
     @asynccontextmanager
@@ -665,7 +665,7 @@ class MainAgentOrchestrator:
 
     def _publish_compression(self, session_id: str, agent: Agent, summary_before: str | None) -> None:
         summary_after = agent.state.summary
-        governance = getattr(agent.state, 'middle_context', {}).get('globex_context', {})
+        governance = getattr(agent.state, 'middle_context', {}).get('smartlect_context', {})
         report = governance.get('last_compaction', {})
         if summary_after == summary_before and not report.get('archived_results'):
             return

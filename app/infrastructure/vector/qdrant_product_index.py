@@ -21,7 +21,7 @@ from app.infrastructure.vector.embedding_identity import embedding_identity, pro
 
 
 def _point_id(product_id: str) -> str:
-    return str(uuid.uuid5(uuid.NAMESPACE_URL, f"globex/product/{product_id}"))
+    return str(uuid.uuid5(uuid.NAMESPACE_URL, f"smartlect/product/{product_id}"))
 
 
 class QdrantProductIndex(ProductVectorIndex):

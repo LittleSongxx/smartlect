@@ -17,9 +17,9 @@ import { readConfirmations, mergeConfirmations } from "./confirmations";
 import { recoveringFetch } from "./recoveringFetch";
 import { isSelectedSkill, readPublishedSkills, readSkillUsages } from "./skills";
 
-const STORAGE_KEY = "globex.agui.sessions.v1";
-const BUYER_KEY = "globex.buyer";
-const ACTIVE_SESSION_KEY = "globex.agui.active-session";
+const STORAGE_KEY = "smartlect.agui.sessions.v1";
+const BUYER_KEY = "smartlect.buyer";
+const ACTIVE_SESSION_KEY = "smartlect.agui.active-session";
 const MAX_SESSIONS = 12;
 interface SavedSession {
   id: string;

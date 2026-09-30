@@ -1,8 +1,8 @@
-# Globex 工程升级交付与评测（2026-09-18）
+# Smartlect 工程升级交付与评测（2026-09-18）
 
 > 阶段快照：下文记录当天最初一轮实验。随后已撤除 LLM 精排，改为仅允许专用 HTTP reranker；固定选购表单已升级为 Agent 通过 `show_shopping_form` 动态定义问题。旧实验结果继续保留，当前状态及发布汇总见[每日工程更新](../../../docs/设计演进记录.md#每日工程更新)；“未提交或推送”指本阶段验收时状态。当前脚本的 `--live-rerank` 使用 HTTP reranker，不能用来原样复现已撤除的 LLM 精排试验。
 
-本轮只更新 `线上版本/项目工程/globex-agent`。实施前已获取远端 `origin/main`（`f0ac5a84`）并核对差异，保留本地前序修复。未提交或推送。`2026-09-12` 教程目录的 112 个文件与实施前 SHA-256 完全一致。
+本轮只更新 `线上版本/项目工程/smartlect`。实施前已获取远端 `origin/main`（`f0ac5a84`）并核对差异，保留本地前序修复。未提交或推送。`2026-09-12` 教程目录的 112 个文件与实施前 SHA-256 完全一致。
 
 ## 交付范围
 
@@ -95,7 +95,7 @@ uv run python -m scripts.eval.retrieval_upgrade --output .pytest_cache/rerank-ne
 uv run --extra optimization python -m scripts.optimize_prompts --output .pytest_cache/gepa-new --max-calls 24
 ```
 
-真实 Redis 测试需要本机 `redis-server`；可通过 `GLOBEX_REDIS_SERVER_BIN` 指定可执行文件。页面表单和 ACP 的使用命令见 [工程 README](../../../README.md#本轮工程升级与使用2026-09-18)。
+真实 Redis 测试需要本机 `redis-server`；可通过 `SMARTLECT_REDIS_SERVER_BIN` 指定可执行文件。页面表单和 ACP 的使用命令见 [工程 README](../../../README.md#本轮工程升级与使用2026-09-18)。
 
 后续先恢复 embedding / HTTP reranker 服务，在开发集选权重与窗口，再冻结配置执行完整 hybrid-experimental 门禁。GEPA 应先补足开发集中的空结果后约束保留样本，再用新的独立留出和完整 Agent 成对评测验证候选。现有 12 个场景的小试验不能直接批准上线。
 

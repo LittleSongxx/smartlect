@@ -217,10 +217,10 @@ async def test_passthrough_does_not_add_markers_and_invalid_settings_rejected(tm
 
 def test_cache_trace_whitelist_preserves_unknown_and_redacts_text():
     from app.infrastructure.tracing import _sanitize_attributes
-    attrs={'globex.prompt_cache.cache_read_tokens_known':False,'globex.prompt_cache.cache_marker_count':2,
-           'globex.context.call_kind':'summary','globex.prompt_cache.buyer_text':'个人原文'}
+    attrs={'smartlect.prompt_cache.cache_read_tokens_known':False,'smartlect.prompt_cache.cache_marker_count':2,
+           'smartlect.context.call_kind':'summary','smartlect.prompt_cache.buyer_text':'个人原文'}
     clean=_sanitize_attributes(attrs)
-    assert clean=={k:v for k,v in attrs.items() if k!='globex.prompt_cache.buyer_text'}
+    assert clean=={k:v for k,v in attrs.items() if k!='smartlect.prompt_cache.buyer_text'}
 
 
 @pytest.mark.asyncio

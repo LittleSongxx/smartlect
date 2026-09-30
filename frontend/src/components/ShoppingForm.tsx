@@ -34,7 +34,7 @@ export function readShoppingForm(value: unknown): RecordValue | null {
       || !Array.isArray(value.messages) || value.messages.length !== 3) return null;
   const [create, components, data] = value.messages;
   if (!value.messages.every((m: any) => record(m) && m.version === "v0.9")
-      || create.createSurface?.catalogId !== "globex.local/shopping-v2"
+      || create.createSurface?.catalogId !== "smartlect.local/shopping-v2"
       || create.createSurface.surfaceId !== value.form_id
       || components.updateComponents?.surfaceId !== value.form_id
       || components.updateComponents?.components?.length !== 1

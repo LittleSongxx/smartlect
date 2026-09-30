@@ -124,7 +124,7 @@
       },
       {
         "bytes": 13361,
-        "path": "app/application/prompts/globex.yml",
+        "path": "app/application/prompts/smartlect.yml",
         "sha256": "6d79cbb8346d6d79e90dbb4bfe79a9ba7d1046c632eaf642f51ea977f838a3a5"
       },
       {
@@ -4240,7 +4240,7 @@
     "files": [
       {
         "bytes": 13361,
-        "path": "app/application/prompts/globex.yml",
+        "path": "app/application/prompts/smartlect.yml",
         "sha256": "6d79cbb8346d6d79e90dbb4bfe79a9ba7d1046c632eaf642f51ea977f838a3a5"
       }
     ],
@@ -4325,9 +4325,9 @@
   "services_configured": {
     "embedding_endpoint": "https://llm-en3p4oz5m2rwwgvv.cn-beijing.maas.aliyuncs.com/compatible-mode/v1",
     "llm_endpoint": "https://api.deepseek.com",
-    "qdrant_category_collection": "globex_category_kb",
+    "qdrant_category_collection": "smartlect_category_kb",
     "qdrant_endpoint": "local_embedded",
-    "qdrant_product_collection": "globex_products",
+    "qdrant_product_collection": "smartlect_products",
     "reranker_endpoint": "https://llm-en3p4oz5m2rwwgvv.cn-beijing.maas.aliyuncs.com/api/v1/services/rerank/text-rerank/text-rerank"
   },
   "started_at": "2026-09-30T07:08:04.043369+00:00"

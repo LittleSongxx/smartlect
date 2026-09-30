@@ -103,8 +103,8 @@ def affected_paths(paths):
     result = []
     for raw in paths:
         path = raw.strip().replace('\\', '/')
-        if '/globex-agent/' in path:
-            path = path.split('/globex-agent/', 1)[1]
+        if '/smartlect/' in path:
+            path = path.split('/smartlect/', 1)[1]
         if path.startswith(WATCHED):
             result.append(path)
     return sorted(set(result))

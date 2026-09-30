@@ -162,7 +162,7 @@ async def test_checkpoint_and_state_atomic_fenced_and_operation_idempotent(tmp_p
     store=SqlFencedSessionStore(engine)
     try:
         claim=await store.claim('s',buyer_id='b')
-        state=AgentState(middle_context={'globex_context':{'checkpoint_id':'cp1','working':{'goal':'背包'}}})
+        state=AgentState(middle_context={'smartlect_context':{'checkpoint_id':'cp1','working':{'goal':'背包'}}})
         newer=await store.claim('s',buyer_id='b')
         with pytest.raises(StaleSessionWrite):await store.save_claim(claim,state.model_dump_json())
         async with engine.connect() as db:assert (await db.execute(select(ContextCheckpointRow))).first() is None

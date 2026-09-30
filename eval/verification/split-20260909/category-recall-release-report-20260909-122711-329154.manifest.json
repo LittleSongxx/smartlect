@@ -89,7 +89,7 @@
       },
       {
         "bytes": 11035,
-        "path": "app/application/prompts/globex.yml",
+        "path": "app/application/prompts/smartlect.yml",
         "sha256": "4b2299133a077d9af99785ba7bab53d06b0562b7db1d6af41ff133724604bceb"
       },
       {
@@ -1355,7 +1355,7 @@
     "files": [
       {
         "bytes": 11035,
-        "path": "app/application/prompts/globex.yml",
+        "path": "app/application/prompts/smartlect.yml",
         "sha256": "4b2299133a077d9af99785ba7bab53d06b0562b7db1d6af41ff133724604bceb"
       }
     ],

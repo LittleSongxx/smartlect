@@ -3,7 +3,7 @@
   "source_code_sha256": "0efa153c1ef1ad0bc3a30fd11d889410f8eb86ec8d6ecf5d655eea6d898d2bc2",
   "isolation_environment": {
     "DATA_DIR": "每进程独立绝对路径",
-    "DATABASE_URL": "sqlite+aiosqlite:///每进程独立绝对路径/globex.db",
+    "DATABASE_URL": "sqlite+aiosqlite:///每进程独立绝对路径/smartlect.db",
     "QUEUE_ENABLED": "0",
     "REDIS_URL": "",
     "SEMANTIC_CACHE_ENABLED": "0",

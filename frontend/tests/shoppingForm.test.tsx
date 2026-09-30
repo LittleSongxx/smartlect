@@ -11,7 +11,7 @@ const q = (id: string, type: string, label: string, extra = {}) => ({
 });
 function makeForm(questions: ReturnType<typeof q>[], defaults = {}, formId = "form-1") {
   return {form_id: formId, session_id: "s", revision: 1, submission: null, messages: [
-    {version: "v0.9", createSurface: {surfaceId: formId, catalogId: "globex.local/shopping-v2"}},
+    {version: "v0.9", createSurface: {surfaceId: formId, catalogId: "smartlect.local/shopping-v2"}},
     {version: "v0.9", updateComponents: {surfaceId: formId, components: [{id: "root", component: "ShoppingForm", title: "Agent 本次提出的问题",
       context: "已明确想选耳机", description: "请补充使用方式，便于比较", questions, value: {path: "/requirements"},
       action: {event: {name: "applyShoppingRequirements", context: {requirements: {path: "/requirements"}}}}}]}},

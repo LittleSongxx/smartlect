@@ -123,9 +123,9 @@ class BudgetCall:
             self.started_at = None
 
 
-_budget_call: ContextVar[BudgetCall | None] = ContextVar("globex_budget_call", default=None)
-_structured_call: ContextVar[bool] = ContextVar("globex_structured_call", default=False)
-_structured_finalizers: ContextVar[list | None] = ContextVar("globex_structured_finalizers", default=None)
+_budget_call: ContextVar[BudgetCall | None] = ContextVar("smartlect_budget_call", default=None)
+_structured_call: ContextVar[bool] = ContextVar("smartlect_structured_call", default=False)
+_structured_finalizers: ContextVar[list | None] = ContextVar("smartlect_structured_finalizers", default=None)
 
 
 class StreamClosingOpenAIChatModel(OpenAIChatModel):

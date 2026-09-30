@@ -367,7 +367,7 @@ def main():
         "--cases", type=Path, default=Path("eval/optimization_search.jsonl")
     )
     parser.add_argument(
-        "--prompt", type=Path, default=Path("app/application/prompts/globex.yml")
+        "--prompt", type=Path, default=Path("app/application/prompts/smartlect.yml")
     )
     parser.add_argument(
         "--public-skill",

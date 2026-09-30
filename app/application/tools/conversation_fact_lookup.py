@@ -12,7 +12,7 @@ from app.infrastructure.context_usage import record_context_diagnostic, record_e
 
 
 # 只在当前原生 reply 调用链生效；并发买家、下一轮和进程重启不会继承。
-lookup_batch_scope = ContextVar('globex_lookup_batch_scope', default=None)
+lookup_batch_scope = ContextVar('smartlect_lookup_batch_scope', default=None)
 
 
 def explicit_lookup_batch(text):

@@ -197,7 +197,7 @@ class SqlFencedSessionStore(SessionStore):
             else:
                 state.state_json = state_json
                 state.updated_at = datetime.now(timezone.utc)
-            governance = json.loads(state_json).get('middle_context', {}).get('globex_context', {})
+            governance = json.loads(state_json).get('middle_context', {}).get('smartlect_context', {})
             checkpoint_id = governance.get('checkpoint_id')
             if checkpoint_id and await db.get(ContextCheckpointRow, checkpoint_id) is None:
                 db.add(ContextCheckpointRow(checkpoint_id=checkpoint_id, session_id=claim.session_id,
@@ -244,7 +244,7 @@ class SqlFencedSessionStore(SessionStore):
         async with self._transaction() as db:
             row, state = await self._ownership(db, session_id, buyer_id, create=False, enforce_owner=True)
             payload = json.loads(state.state_json) if state else {}
-            governance = payload.get('middle_context', {}).get('globex_context', {})
+            governance = payload.get('middle_context', {}).get('smartlect_context', {})
             active = await db.scalar(select(ContextOperationRow).where(ContextOperationRow.session_id==session_id, ContextOperationRow.buyer_id==buyer_id, ContextOperationRow.status=='running'))
             return {'operation':self._context_operation(active) if active else None, 'session_id':session_id, 'revision':row.revision, 'summary':payload.get('summary') or '',
                     'working':governance.get('working',{}), 'statistics':governance.get('last_compaction',{}),

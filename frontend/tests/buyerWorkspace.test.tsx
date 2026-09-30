@@ -11,7 +11,7 @@ let finishCompaction: ((response:Response)=>void)|undefined;
 beforeEach(() => {
   (globalThis as any).IS_REACT_ACT_ENVIRONMENT = true;
   sessionStorage.clear();
-  localStorage.clear(); localStorage.setItem("globex.access-token", "test-token");
+  localStorage.clear(); localStorage.setItem("smartlect.access-token", "test-token");
   personal=[]; preferences=[]; requests=[]; failure=false;
   contextOperation=null; finishCompaction=undefined;
   vi.stubGlobal("scrollTo",vi.fn()); Element.prototype.scrollIntoView=vi.fn();
@@ -124,7 +124,7 @@ it("长期偏好支持添加、精确编辑、删除，并从服务器重新加�
 
 
 it("刷新后保留偏好页面并重新读取已保存的服务端偏好", async () => {
-  sessionStorage.setItem("globex.workspace.view", "preferences");
+  sessionStorage.setItem("smartlect.workspace.view", "preferences");
   preferences=[{kind:"like", statement:"喜欢小香风连衣裙"}];
   await mount();
   expect(host.textContent).toContain("喜欢小香风连衣裙");
@@ -156,7 +156,7 @@ it("整理中切到 Skill 页面，后台完成后解除全局忙碌状态", asy
 });
 
 it("在偏好页刷新也会恢复当前会话的整理状态", async () => {
-  sessionStorage.setItem("globex.workspace.view","preferences");
+  sessionStorage.setItem("smartlect.workspace.view","preferences");
   contextOperation={operation_id:"compact-1",status:"running"};
   await mount();
   expect(requests.some(r=>r.path==="/commerce/context")).toBe(true);

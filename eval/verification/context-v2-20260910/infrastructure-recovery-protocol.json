@@ -17,7 +17,7 @@
   ],
   "recovery_unit": "同场景、同原始重复的A/B/C三策略整组复测；所有策略均纳入，不挑选答案",
   "maximum_recovery_attempts_per_block": 3,
-  "source": "/tmp/globex-context-v3-accepted-frozen",
+  "source": "/tmp/smartlect-context-v3-accepted-frozen",
   "transport": {
     "concurrency": 2,
     "min_interval_seconds": 5,

@@ -10,7 +10,7 @@
     "production_build": "PASS"
   },
   "docker_frontend": {
-    "image": "globex-frontend:verification-final-20260909",
+    "image": "smartlect-frontend:verification-final-20260909",
     "manifest_list_sha256": "b0e1a2713a8b361398393191bf8a81fabeff76841d748a4536052d0db7e7a1e0",
     "nginx_config": "PASS",
     "http_status": 200,

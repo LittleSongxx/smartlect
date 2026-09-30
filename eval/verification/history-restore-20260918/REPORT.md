@@ -52,7 +52,7 @@
 
 ## 重现方式与边界
 
-- 后端：项目根目录执行 `GLOBEX_REDIS_SERVER_BIN=<本机redis-server路径> .venv/bin/python -m pytest -q`。
+- 后端：项目根目录执行 `SMARTLECT_REDIS_SERVER_BIN=<本机redis-server路径> .venv/bin/python -m pytest -q`。
 - 前端：`cd frontend` 后执行 `npm test`、`npm run build`。
 - 本次浏览器脚本：[隔离恢复](verify_browser.py)、[原账号只读复核](verify_normal.py)。脚本中的会话 ID 属于本机本次验收数据，迁移环境时需替换，不能冒充通用测试数据。受控长会话生成过程见 [seed_history.py](seed_history.py)，只允许对隔离数据目录使用。
 - 验收端口为后端 8000、前端 5174；完成后已撤掉进程级测试买家和测试数据目录覆盖，恢复项目本机配置。

@@ -11,7 +11,7 @@ async def main():
     journal=AGUIJournal(data/'ag_ui_runs.db')
     buyer='clarification-browser-test'
     session='history-fixture-55-rounds-20260918'
-    engine=create_async_engine('sqlite+aiosqlite:///'+str(data/'globex.db'))
+    engine=create_async_engine('sqlite+aiosqlite:///'+str(data/'smartlect.db'))
     await SqlFencedSessionStore(engine).assert_owner(session,buyer,create=True)
     product=(await journal.session('6a356027-2306-4c80-baeb-6fcc697c2619',buyer))['state']['products'][0]
     for index in range(55):

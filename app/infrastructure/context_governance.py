@@ -23,7 +23,7 @@ class ContextCapacityError(ValueError):
 
 
 def governance(agent):
-    state = agent.state.middle_context.setdefault('globex_context', {})
+    state = agent.state.middle_context.setdefault('smartlect_context', {})
     if state.get('policy_version') != POLICY_VERSION:
         state.update(policy_version=POLICY_VERSION, failures=0)
     return state
@@ -204,20 +204,20 @@ class ContextAwareAgent(Agent):
     """唯一 SDK 版本适配点：禁止原生按 token 拆散完整买家轮次。"""
     async def _prepare_model_input(self):
         prepared = await super()._prepare_model_input()
-        if getattr(self, '_globex_stable_prefix', False):
+        if getattr(self, '_smartlect_stable_prefix', False):
             work = governance(self).get('working')
             if work:
-                projector = project_state_messages if getattr(self, '_globex_delta_state', False) else project_working_hint
+                projector = project_state_messages if getattr(self, '_smartlect_delta_state', False) else project_working_hint
                 prepared['messages'] = projector(prepared['messages'], work)
         return prepared
 
     async def _split_context_for_compression(self, to_reserved_tokens, tools):
-        if not getattr(self, '_globex_layered_split', False):
+        if not getattr(self, '_smartlect_layered_split', False):
             return await super()._split_context_for_compression(to_reserved_tokens, tools)
         head, tail = compression_parts(self)
         # 摘要请求也采用同次输入内共享，避免业务计数已去重而摘要仍灌入原始重复正文。
         # 共享去重与 deepcopy 是纯 CPU 重活，离开事件循环执行（D5）。
-        rules = getattr(self, '_globex_compact_rules', False)
+        rules = getattr(self, '_smartlect_compact_rules', False)
         return await asyncio.to_thread(
             lambda: (share_identical_products(head, compact_rules=rules), copy.deepcopy(tail)),
         )
@@ -348,14 +348,14 @@ class LayeredContextMiddleware(MiddlewareBase):
     async def on_system_prompt(self, agent, current_prompt):
         # 静态来源优先级覆盖两种布局；不把当前数值复制进系统提示，不改写历史观察。
         current_prompt += '\n' + CURRENT_OBSERVATION_RULES
-        agent._globex_stable_prefix = self.prompt_layout == 'stable_prefix'
-        agent._globex_delta_state = self.state_mode == 'delta'
-        agent._globex_compact_rules = self.compact_result_rules
+        agent._smartlect_stable_prefix = self.prompt_layout == 'stable_prefix'
+        agent._smartlect_delta_state = self.state_mode == 'delta'
+        agent._smartlect_compact_rules = self.compact_result_rules
         if self.compact_result_rules:
             current_prompt += ('\n商品结果固定规则：archived=true 表示已读结果归档，完整列表及原顺序按 result_ref 回查；历史不能替代当前核验。'
                 'same_business_fields_as 引用的完整商品一定在本次输入内；只共享完全相同业务字段，本批顺序、查询条件、观察时间、证据引用仍以本条为准。')
-        if agent._globex_stable_prefix:
-            delta_rule = ('\nshopping_state 为完整基线，shopping_state_delta 按 base/revision 接续：set 替换字段，remove 删除字段；constraints_set/remove 只更新相应约束。新 snapshot 覆盖之前工作记录；最新买家原文优先。' if agent._globex_delta_state else '')
+        if agent._smartlect_stable_prefix:
+            delta_rule = ('\nshopping_state 为完整基线，shopping_state_delta 按 base/revision 接续：set 替换字段，remove 删除字段；constraints_set/remove 只更新相应约束。新 snapshot 覆盖之前工作记录；最新买家原文优先。' if agent._smartlect_delta_state else '')
             return current_prompt + '\n' + SHOPPING_RULES + delta_rule
         work = governance(agent).get('working')
         if not work:
@@ -585,7 +585,7 @@ class LayeredContextMiddleware(MiddlewareBase):
                 previous = agent.state.summary
                 params = getattr(agent.model, 'parameters', None)
                 if params is not None and getattr(params,'max_tokens',None) is None: params.max_tokens = 8192
-                agent._globex_layered_split = True
+                agent._smartlect_layered_split = True
                 from app.infrastructure.context_usage import context_call_kind, context_usage_sink
                 kind_token = context_call_kind.set('summary')
                 prior_sink = context_usage_sink.get()
@@ -636,7 +636,7 @@ class LayeredContextMiddleware(MiddlewareBase):
                 finally:
                     context_call_kind.reset(kind_token)
                     context_usage_sink.reset(sink_token)
-                    agent._globex_layered_split = False
+                    agent._smartlect_layered_split = False
                 state = governance(agent)
                 state['summary_usage'] = usage_samples
                 state['summary_attempts'] = attempts
@@ -657,7 +657,7 @@ class LayeredContextMiddleware(MiddlewareBase):
             state['last_compaction'] = report
             if changed or archived:
                 state['checkpoint_id'] = hashlib.sha256(json.dumps(report,sort_keys=True).encode()+str(time.time_ns()).encode()).hexdigest()
-            trace.get_current_span().set_attributes({'globex.context.'+k:v for k,v in report.items() if isinstance(v,(str,int,float,bool))})
+            trace.get_current_span().set_attributes({'smartlect.context.'+k:v for k,v in report.items() if isinstance(v,(str,int,float,bool))})
             return report
         except BaseException as error:
             agent.state = old_state

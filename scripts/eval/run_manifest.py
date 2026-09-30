@@ -149,8 +149,8 @@ def build_manifest(*, runner: str, dataset: Path, selection: dict, parameters: d
             "embedding_endpoint": public_endpoint(os.getenv("EMBEDDING_BASE_URL") or os.getenv("LLM_BASE_URL", "https://dashscope.aliyuncs.com/compatible-mode/v1")),
             "reranker_endpoint": public_endpoint(os.getenv("RERANKER_BASE_URL", "")),
             "qdrant_endpoint": public_endpoint(os.getenv("QDRANT_URL", "")) or "local_embedded",
-            "qdrant_product_collection": os.getenv("QDRANT_COLLECTION", "globex_products"),
-            "qdrant_category_collection": os.getenv("CATEGORY_KB_COLLECTION", "globex_category_kb"),
+            "qdrant_product_collection": os.getenv("QDRANT_COLLECTION", "smartlect_products"),
+            "qdrant_category_collection": os.getenv("CATEGORY_KB_COLLECTION", "smartlect_category_kb"),
         },
         "execution": {"status": "NOT_RUN", "actual_strategies": [], "gate": "NOT_RUN"},
     }

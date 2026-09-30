@@ -1,7 +1,7 @@
 {
   "created_at": "2026-09-09T05:39:01.859098+00:00",
-  "source_workspace": "/Users/haojunpan/Desktop/工作项目/project/ai/ai-agents-from-zero/项目实战-电商搜索/线上版本--归档-2026-08-29/项目工程/globex-agent",
-  "snapshot_workspace": "/var/folders/c2/09bjtr_d7xs_qbydccp7811w0000gp/T/globex-final-20260909-sr4rxkuw/workspace",
+  "source_workspace": "/Users/haojunpan/Desktop/工作项目/project/ai/ai-agents-from-zero/项目实战-电商搜索/线上版本--归档-2026-08-29/项目工程/smartlect",
+  "snapshot_workspace": "/var/folders/c2/09bjtr_d7xs_qbydccp7811w0000gp/T/smartlect-final-20260909-sr4rxkuw/workspace",
   "source_code_sha256": "3ef9cb7200d6a361afd1d1188296544e6b70ef387fbc8a12f167e4a0d2e1f300",
   "snapshot_code_sha256": "3ef9cb7200d6a361afd1d1188296544e6b70ef387fbc8a12f167e4a0d2e1f300",
   "source_unchanged_during_copy": true,
@@ -123,7 +123,7 @@
       "bytes": 24
     },
     {
-      "path": "app/application/prompts/globex.yml",
+      "path": "app/application/prompts/smartlect.yml",
       "sha256": "01fa592f3ae069990ba0feab49e778336a5c7488ca63c6500965061a8d85b1d0",
       "bytes": 11615
     },
@@ -1313,7 +1313,7 @@
     "OTEL_EXPORTER_OTLP_TRACES_ENDPOINT": ""
   },
   "frozen_archive": {
-    "path": "/Users/haojunpan/Desktop/工作项目/project/ai/ai-agents-from-zero/项目实战-电商搜索/线上版本--归档-2026-08-29/项目工程/globex-agent/eval/verification/final-20260909/frozen-source.tar.gz",
+    "path": "/Users/haojunpan/Desktop/工作项目/project/ai/ai-agents-from-zero/项目实战-电商搜索/线上版本--归档-2026-08-29/项目工程/smartlect/eval/verification/final-20260909/frozen-source.tar.gz",
     "sha256": "9f80cb8dc01dd1bf9804a9861db54c9cc990330d860768708af7631b2a32e45d",
     "bytes": 6370588,
     "contains": "源文件与版本化数据，不含.env、身份secret或用户数据库"

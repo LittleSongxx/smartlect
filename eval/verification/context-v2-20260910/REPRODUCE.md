@@ -14,7 +14,7 @@ python -m scripts.eval.run_context \
   --min-interval-seconds 5 \
   --model-retries 0 \
   --repetitions 3 \
-  --output /tmp/globex-context-cost-reproduction
+  --output /tmp/smartlect-context-cost-reproduction
 ```
 
 输出目录必须是本次实验专用的新目录，不能指向生产数据库。不要与其它同网关大批量实验并行，以免独立限流器叠加并发。网络错误或未知 usage 原样保留，不挑选成功回答补齐成本。

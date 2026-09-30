@@ -176,7 +176,7 @@ async def run_profile(profile, output, *, suite_path=None, strategies=None, case
                     from app.infrastructure.context_usage import evaluation_evidence_sink
                     trace_name = f'{case_id}-{strategy}-{repetition}.jsonl'
                     evidence_token = evaluation_evidence_sink.set(evidence_writer(output/'traces'/trace_name, identity))
-                    with tempfile.TemporaryDirectory(prefix='globex-harness-') as temporary:
+                    with tempfile.TemporaryDirectory(prefix='smartlect-harness-') as temporary:
                         try:
                             row=await asyncio.wait_for(execute_case(cases[case_id],strategy,repetition,settings,suite,
                                 Path(temporary),throttle,collect),runtime['scenario_timeout_seconds'])

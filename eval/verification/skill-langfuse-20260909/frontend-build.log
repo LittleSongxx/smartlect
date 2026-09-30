@@ -1,5 +1,5 @@
 
-> globex-frontend@0.3.0 build
+> smartlect-frontend@0.3.0 build
 > tsc -b && vite build
 
 vite v5.4.21 building for production...

@@ -18,7 +18,7 @@ from dotenv import load_dotenv
 
 from app.infrastructure.langfuse_config import LANGFUSE_FIELDS, LangfuseConfig
 
-# 项目根目录（globex-agent/）
+# 项目根目录（smartlect/）
 PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
 
 def _load_environment(path: Path) -> None:
@@ -78,7 +78,7 @@ class Settings:
     prompt_cache_policy: str = "static"
     skill_catalog_mode: str = "legacy"  # append_only 为变化驱动候选，收益验收后再启用
     # ---- 四期：存储 ----
-    # 默认 SQLite（零外部依赖，落在 DATA_DIR/globex.db）。
+    # 默认 SQLite（零外部依赖，落在 DATA_DIR/smartlect.db）。
     # 换服务型数据库需自行装异步驱动（aiomysql / asyncpg）并改此 URL，本仓未验证。
     # 特殊值 "file" = 退回三期的 JSON 文件存储（无数据库）
     context_strategy: str = "legacy"
@@ -124,7 +124,7 @@ class Settings:
     langfuse_base_url: str = field(default="", repr=False)
     langfuse_public_key: str = field(default="", repr=False)
     langfuse_secret_key: str = field(default="", repr=False)
-    otel_service_name: str = "globex-agent"
+    otel_service_name: str = "smartlect"
     otlp_timeout_seconds: float = 5.0
     session_owner_binding: bool = True
     identity_mode: str = "demo"
@@ -189,13 +189,13 @@ def load_settings() -> Settings:
         embedding_version=os.getenv("EMBEDDING_VERSION", ""),
         embedding_dim=int(os.getenv("EMBEDDING_DIM", "1024")),
         qdrant_url=os.getenv("QDRANT_URL", ""),
-        qdrant_collection=os.getenv("QDRANT_COLLECTION", "globex_products"),
+        qdrant_collection=os.getenv("QDRANT_COLLECTION", "smartlect_products"),
         reranker_base_url=os.getenv("RERANKER_BASE_URL", ""),
         reranker_model=os.getenv("RERANKER_MODEL", ""),
         tavily_api_key=os.getenv("TAVILY_API_KEY", ""),
         otlp_endpoint=os.getenv("OTEL_EXPORTER_OTLP_ENDPOINT", ""),
         data_dir=data_dir,
-        category_kb_collection=os.getenv("CATEGORY_KB_COLLECTION", "globex_category_kb"),
+        category_kb_collection=os.getenv("CATEGORY_KB_COLLECTION", "smartlect_category_kb"),
         context_size=int(os.getenv("CONTEXT_SIZE", "128000")),
         tool_result_limit=int(os.getenv("TOOL_RESULT_LIMIT", "20000")),
         reply_token_budget=int(os.getenv("REPLY_TOKEN_BUDGET", "0")),
@@ -219,7 +219,7 @@ def load_settings() -> Settings:
         database_url=(
             os.getenv("DATABASE_URL")
             or os.getenv("MYSQL_URL")
-            or f"sqlite+aiosqlite:///{data_dir / 'globex.db'}"
+            or f"sqlite+aiosqlite:///{data_dir / 'smartlect.db'}"
         ),
         redis_url=os.getenv("REDIS_URL", ""),
         semantic_cache_enabled=os.getenv("SEMANTIC_CACHE_ENABLED", "1") not in ("0", "false", "False"),
@@ -249,7 +249,7 @@ def load_settings() -> Settings:
         langfuse_base_url=os.getenv("LANGFUSE_BASE_URL", ""),
         langfuse_public_key=os.getenv("LANGFUSE_PUBLIC_KEY", ""),
         langfuse_secret_key=os.getenv("LANGFUSE_SECRET_KEY", ""),
-        otel_service_name=os.getenv("OTEL_SERVICE_NAME", "globex-agent"),
+        otel_service_name=os.getenv("OTEL_SERVICE_NAME", "smartlect"),
         otlp_timeout_seconds=float(os.getenv("OTEL_EXPORTER_OTLP_TRACES_TIMEOUT") or os.getenv("OTEL_EXPORTER_OTLP_TIMEOUT", "5")),
         session_owner_binding=os.getenv("SESSION_OWNER_BINDING", "1") not in ("0", "false", "False"),
         identity_mode=os.getenv("IDENTITY_MODE", "demo"),

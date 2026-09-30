@@ -1,5 +1,5 @@
 {
-  "archive": "/tmp/globex-context-baseline.tar.gz",
+  "archive": "/tmp/smartlect-context-baseline.tar.gz",
   "files": {
     "app/__init__.py": "8b084a9f378124b2b1a51563bf3c22444eb7ff33692017da28b2136ae56987ed",
     "app/application/__init__.py": "8b084a9f378124b2b1a51563bf3c22444eb7ff33692017da28b2136ae56987ed",

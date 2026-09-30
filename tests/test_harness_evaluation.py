@@ -64,7 +64,7 @@ def test_synthetic_trace_is_durable_private_and_report_link_is_local(tmp_path):
 
 
 def test_impact_recognizes_parent_repository_and_ignores_tutorials():
-    assert affected_paths(['项目/项目工程/globex-agent/app/infrastructure/llm.py','项目教程/05.md'])==['app/infrastructure/llm.py']
+    assert affected_paths(['项目/项目工程/smartlect/app/infrastructure/llm.py','项目教程/05.md'])==['app/infrastructure/llm.py']
     assert affected_paths(['app/application/harness/loop_detector.py','README.md'])==['app/application/harness/loop_detector.py']
 
 

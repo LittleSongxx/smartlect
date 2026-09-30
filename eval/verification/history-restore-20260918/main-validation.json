@@ -11,7 +11,7 @@
   },
   "verification": {
     "backend": {
-      "command": "GLOBEX_REDIS_SERVER_BIN=<本机redis-server路径> .venv/bin/python -m pytest -q",
+      "command": "SMARTLECT_REDIS_SERVER_BIN=<本机redis-server路径> .venv/bin/python -m pytest -q",
       "passed": 1148,
       "warnings": 1,
       "seconds": 105.27,
@@ -59,7 +59,7 @@
     "app/application/agents/context_policy.py": "74b26d04264ae22f7fac2d77dc812e1211b6a1c867c9a7a8ac60a9ca16978a85",
     "app/application/agents/main_agent.py": "f981dd37a4950c8a561605bf1f860e2c2933fcc85b4335f6ffefd160a6ba6cc7",
     "app/application/agents/permissions.py": "6736848dc2f0ac50fbf2ff26aa9ef1fdf1c85b0fd15a419cc550dcb589096e0e",
-    "app/application/prompts/globex.yml": "494d1ee105ffa10b828f8328c196538c50e81baddee1143ea0206d03c4c2d8ce",
+    "app/application/prompts/smartlect.yml": "494d1ee105ffa10b828f8328c196538c50e81baddee1143ea0206d03c4c2d8ce",
     "app/application/tools/shopping_form_tool.py": "2a8f17454a3eba148e61ed3d511885f2cc3d4c9fdca911f788cf66c4f09430cd",
     "app/application/usecases/catalog_search.py": "3593134d02b427b01c8a54f89b0e8c4b132cc05723eea05e406d9191d42d8bdf",
     "app/composition.py": "f1836208d6a36367d0bae8677ca0ef4f6996a3edbc1e25fe18cf82d179e73bc4",

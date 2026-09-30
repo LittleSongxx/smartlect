@@ -188,9 +188,9 @@ describe("持久运行恢复（使用官方 AG-UI SDK）", () => {
 
   it("服务重启中断态从历史读取，不伪造继续执行", async () => {
     const values = store();
-    values.setItem("globex.buyer", "b1");
-    values.setItem("globex.agui.active-session", "s1");
-    values.setItem("globex.agui.sessions.v1", JSON.stringify([{ id: "s1", title: "旧记录", updatedAt: 1, messages: [{ id: "u", role: "user", content: "查询" }], products: [], searchCompleted: false, runId: "r1" }]));
+    values.setItem("smartlect.buyer", "b1");
+    values.setItem("smartlect.agui.active-session", "s1");
+    values.setItem("smartlect.agui.sessions.v1", JSON.stringify([{ id: "s1", title: "旧记录", updatedAt: 1, messages: [{ id: "u", role: "user", content: "查询" }], products: [], searchCompleted: false, runId: "r1" }]));
     let posts = 0;
     const client = new CommerceClient({ url: "/commerce/ag-ui/run", storage: values, buyerId:"b1", fetch: async (url, init) => {
       if (init.method === "POST") posts++;
@@ -211,9 +211,9 @@ describe("刷新时以服务端记录恢复，缓存仅用于加速", () => {
 
   it.each([null, "{坏缓存", "[]"])("正文缓存为 %s 时仍按当前会话恢复", async (cache) => {
     const storage=store();
-    storage.setItem("globex.buyer","b1");
-    storage.setItem("globex.agui.active-session","saved");
-    if(cache!==null) storage.setItem("globex.agui.sessions.v1",cache);
+    storage.setItem("smartlect.buyer","b1");
+    storage.setItem("smartlect.agui.active-session","saved");
+    if(cache!==null) storage.setItem("smartlect.agui.sessions.v1",cache);
     const client=new CommerceClient({url:"/commerce/ag-ui/run",storage,buyerId:"b1",fetch:historyFetch});
     expect(client.getSnapshot().sessionId).toBe("saved");
     await client.initialize();
@@ -223,10 +223,10 @@ describe("刷新时以服务端记录恢复，缓存仅用于加速", () => {
   it("缺少当前会话指针时按服务端时间恢复最新记录",async()=>{
     const storage=store();
     const client=new CommerceClient({url:"/commerce/ag-ui/run",storage,buyerId:"b1",fetch:historyFetch});
-    expect(storage.getItem("globex.buyer")).toBe("b1");
+    expect(storage.getItem("smartlect.buyer")).toBe("b1");
     await client.initialize();
     expect(client.getSnapshot().sessionId).toBe("saved");
-    expect(storage.getItem("globex.agui.active-session")).toBe("saved");
+    expect(storage.getItem("smartlect.agui.active-session")).toBe("saved");
   });
 
   it("空白草稿刷新后恢复买家最近持久会话",async()=>{
@@ -243,9 +243,9 @@ describe("刷新时以服务端记录恢复，缓存仅用于加速", () => {
 
   it("买家切换时不读取上一个买家的本机记录和会话指针",async()=>{
     const storage=store();
-    storage.setItem("globex.buyer","old-buyer");
-    storage.setItem("globex.agui.active-session","private-old");
-    storage.setItem("globex.agui.sessions.v1",JSON.stringify([{id:"private-old",title:"私有",updatedAt:1,messages:[{id:"a",role:"user",content:"私有内容"}]}]));
+    storage.setItem("smartlect.buyer","old-buyer");
+    storage.setItem("smartlect.agui.active-session","private-old");
+    storage.setItem("smartlect.agui.sessions.v1",JSON.stringify([{id:"private-old",title:"私有",updatedAt:1,messages:[{id:"a",role:"user",content:"私有内容"}]}]));
     const client=new CommerceClient({url:"/commerce/ag-ui/run",buyerId:"new-buyer",storage,fetch:async url=>{
       expect(url).toContain("buyer_id=new-buyer");return json({sessions:[]});
     }});
@@ -274,11 +274,11 @@ it("原生记忆审批通过 SDK resume 回传，不重发普通文本执行", a
 });
 
 it("默认固定 pao-coder，忽略随机缓存身份并从数据库恢复",async()=>{
- const storage=store();storage.setItem("globex.buyer","random-old-id");storage.setItem("globex.agui.active-session","empty-draft");
+ const storage=store();storage.setItem("smartlect.buyer","random-old-id");storage.setItem("smartlect.agui.active-session","empty-draft");
  const requested:string[]=[];
  const fetch=async(url:string)=>{requested.push(url);return url.includes("/sessions?") ? json({sessions:[{id:"pao-history",title:"数据库历史",updatedAt:1}]}) : json({run:{runId:"r",threadId:"pao-history",status:"completed",messages:[{id:"u",role:"user",content:"数据库中的对话"}],state:{}}});};
  const first=new CommerceClient({url:"/commerce/ag-ui/run",storage,fetch});await first.initialize();
- expect(storage.getItem("globex.buyer")).toBe("pao-coder");expect(requested.every(url=>url.includes("buyer_id=pao-coder"))).toBe(true);
+ expect(storage.getItem("smartlect.buyer")).toBe("pao-coder");expect(requested.every(url=>url.includes("buyer_id=pao-coder"))).toBe(true);
  expect(first.getSnapshot().messages[0].content).toBe("数据库中的对话");
  const withoutCache=new CommerceClient({url:"/commerce/ag-ui/run",fetch});await withoutCache.initialize();
  expect(withoutCache.getSnapshot().sessionId).toBe("pao-history");

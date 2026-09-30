@@ -105,7 +105,7 @@ def test_default_prompt_memory_signatures_match_required_tool_arguments(tmp_path
     from app.application.tools.update_preference_tool import build_update_preference_tool
     from app.application.tools.forget_preference_tool import build_forget_preference_tool
     from app.infrastructure.eventbus import TradeEventBus
-    path=Path(__file__).resolve().parents[1]/"app/application/prompts/globex.yml"
+    path=Path(__file__).resolve().parents[1]/"app/application/prompts/smartlect.yml"
     prompt=yaml.safe_load(path.read_text())["main_agent"]["system_prompt"]
     for builder in (build_update_preference_tool,build_forget_preference_tool):
         tool=FunctionTool(builder(make(tmp_path),TradeEventBus()))

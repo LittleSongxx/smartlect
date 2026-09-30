@@ -3,7 +3,7 @@ from pathlib import Path
 import copy,datetime,hashlib,json,os,shutil,subprocess,sys,tarfile,time
 
 ROOT=Path.cwd();OUT=ROOT/'eval/verification/context-v2-20260910'
-FROZEN=Path('/tmp/globex-context-v3-accepted-frozen');PRIMARY=Path('/tmp/context-v3-accepted/holdout')
+FROZEN=Path('/tmp/smartlect-context-v3-accepted-frozen');PRIMARY=Path('/tmp/context-v3-accepted/holdout')
 # 复测调用、评分和归档只使用主实验已经冻结的实现。
 sys.path.insert(0,str(FROZEN))
 from app.infrastructure.settings import load_settings, _load_environment

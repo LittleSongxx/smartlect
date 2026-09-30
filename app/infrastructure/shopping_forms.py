@@ -17,7 +17,7 @@ from pydantic import BaseModel, ConfigDict, Field, model_validator
 from app.domain.catalog.exchange_rate import ExchangeRateTable
 from app.domain.shipping.tariff_schedule import TariffSchedule
 
-CATALOG_ID = "globex.local/shopping-v2"
+CATALOG_ID = "smartlect.local/shopping-v2"
 # 仅用于读取历史表单；新工具使用 Agent 提供的 questions，不受这些业务字段限制。
 FIELDS = ("query", "budget", "ship_to", "currency", "excluded_material_tags", "airline", "size_limit", "weight_priority")
 WEIGHT_PRIORITIES = {

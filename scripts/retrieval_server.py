@@ -63,7 +63,7 @@ def create_app(cache_dir=Path(".cache/retrieval-models"), model_loader=load_mode
         app.state.lock = asyncio.Lock()
         yield
 
-    app = FastAPI(title="Globex 专用检索模型", lifespan=lifespan)
+    app = FastAPI(title="Smartlect 专用检索模型", lifespan=lifespan)
 
     def token_count(model, texts, query=None):
         tokens = model.model.tokenizer

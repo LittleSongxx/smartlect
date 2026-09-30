@@ -89,7 +89,7 @@
       },
       {
         "bytes": 11615,
-        "path": "app/application/prompts/globex.yml",
+        "path": "app/application/prompts/smartlect.yml",
         "sha256": "01fa592f3ae069990ba0feab49e778336a5c7488ca63c6500965061a8d85b1d0"
       },
       {
@@ -5421,7 +5421,7 @@
     "files": [
       {
         "bytes": 11615,
-        "path": "app/application/prompts/globex.yml",
+        "path": "app/application/prompts/smartlect.yml",
         "sha256": "01fa592f3ae069990ba0feab49e778336a5c7488ca63c6500965061a8d85b1d0"
       }
     ],
@@ -5493,9 +5493,9 @@
   "services_configured": {
     "embedding_endpoint": "http://1688openai.alibaba-inc.com/v1",
     "llm_endpoint": "http://1688openai.alibaba-inc.com/v1",
-    "qdrant_category_collection": "globex_category_kb",
+    "qdrant_category_collection": "smartlect_category_kb",
     "qdrant_endpoint": "local_embedded",
-    "qdrant_product_collection": "globex_products",
+    "qdrant_product_collection": "smartlect_products",
     "reranker_endpoint": "https://1688openai.alibaba-inc.com/v1/services/reranker"
   },
   "started_at": "2026-09-09T05:40:43.629142+00:00"

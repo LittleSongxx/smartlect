@@ -35,23 +35,23 @@ def record_context_usage(input_tokens, output_tokens, elapsed_ms, *, cache=None,
     if sink is not None:sink(sample)
     # Langfuse/OTel 只接收数值；未知值明确记录为未知。
     span=trace.get_current_span()
-    span.set_attribute('globex.context.call_kind',sample['kind'])
-    span.set_attribute('globex.context.usage_known',input_tokens is not None)
-    if input_tokens is not None:span.set_attribute('globex.context.input_tokens',input_tokens)
-    if output_tokens is not None:span.set_attribute('globex.context.output_tokens',output_tokens)
+    span.set_attribute('smartlect.context.call_kind',sample['kind'])
+    span.set_attribute('smartlect.context.usage_known',input_tokens is not None)
+    if input_tokens is not None:span.set_attribute('smartlect.context.input_tokens',input_tokens)
+    if output_tokens is not None:span.set_attribute('smartlect.context.output_tokens',output_tokens)
     if cache is not None:
         # 独立 attempt span 保留逐次摘要/回退消耗，不向 SDK generation 重复添加计费字段。
-        with trace.get_tracer('globex.prompt_cache').start_as_current_span(
-                'globex.model.attempt', start_time=start_time) as attempt:
+        with trace.get_tracer('smartlect.prompt_cache').start_as_current_span(
+                'smartlect.model.attempt', start_time=start_time) as attempt:
             attempt.set_attribute('langfuse.observation.type', 'span')
-            attempt.set_attribute('globex.context.call_kind', sample['kind'])
-            attempt.set_attribute('globex.context.elapsed_ms', elapsed_ms)
-            attempt.set_attribute('globex.context.ttft_ms_known', ttft_ms is not None)
-            if ttft_ms is not None:attempt.set_attribute('globex.context.ttft_ms', ttft_ms)
+            attempt.set_attribute('smartlect.context.call_kind', sample['kind'])
+            attempt.set_attribute('smartlect.context.elapsed_ms', elapsed_ms)
+            attempt.set_attribute('smartlect.context.ttft_ms_known', ttft_ms is not None)
+            if ttft_ms is not None:attempt.set_attribute('smartlect.context.ttft_ms', ttft_ms)
             for key, val in [('input_tokens', input_tokens), ('output_tokens', output_tokens)]:
-                attempt.set_attribute('globex.context.'+key+'_known', val is not None)
-                if val is not None:attempt.set_attribute('globex.context.'+key, val)
+                attempt.set_attribute('smartlect.context.'+key+'_known', val is not None)
+                if val is not None:attempt.set_attribute('smartlect.context.'+key, val)
             for key, val in cache.items():
-                if val is not None:attempt.set_attribute('globex.prompt_cache.'+key, val)
+                if val is not None:attempt.set_attribute('smartlect.prompt_cache.'+key, val)
             for key in ('cache_read_tokens','cache_write_tokens','reported_cost'):
-                attempt.set_attribute('globex.prompt_cache.'+key+'_known', cache.get(key) is not None)
+                attempt.set_attribute('smartlect.prompt_cache.'+key+'_known', cache.get(key) is not None)
