@@ -1,0 +1,261 @@
+<!doctype html><meta charset="utf-8"><title>模型服务预检</title><style>body{font:16px/1.7 system-ui;max-width:1000px;margin:40px auto}pre{white-space:pre-wrap;background:#f3f5f2;padding:20px}</style><h1>模型服务身份与工具协议预检</h1><p>无工具执行；失败原样保留。未知或标识不一致禁止宣称同模型收益。</p><pre>{
+  &quot;requested_model&quot;: &quot;deepseek-flash&quot;,
+  &quot;passed&quot;: false,
+  &quot;source_sha256&quot;: &quot;4c7ca7320a9604f0ca0c8ccc935b098dc69ed949670ba5a2bc8fce3f02d53677&quot;,
+  &quot;source_stable&quot;: true,
+  &quot;calls&quot;: 6,
+  &quot;tools_executed&quot;: 0,
+  &quot;scope&quot;: &quot;服务预检；不等于业务质量、BP或真实费用收益验收。&quot;
+}</pre><details><summary>False / none</summary><pre>{
+  &quot;stream&quot;: false,
+  &quot;tool_choice&quot;: &quot;none&quot;,
+  &quot;tools_executed&quot;: 0,
+  &quot;error&quot;: null,
+  &quot;usage&quot;: [
+    {
+      &quot;kind&quot;: &quot;business&quot;,
+      &quot;input_tokens&quot;: 50,
+      &quot;output_tokens&quot;: 369,
+      &quot;elapsed_ms&quot;: 2094.0048600023147,
+      &quot;prompt_cache&quot;: {
+        &quot;model&quot;: &quot;deepseek-flash&quot;,
+        &quot;response_model&quot;: &quot;deepseek-flash&quot;,
+        &quot;response_model_matches&quot;: true,
+        &quot;response_model_conflict&quot;: false,
+        &quot;protocol_status&quot;: &quot;valid&quot;,
+        &quot;cache_mode&quot;: &quot;passthrough&quot;,
+        &quot;cache_policy&quot;: &quot;static&quot;,
+        &quot;cache_marker_count&quot;: 0,
+        &quot;cache_reason&quot;: &quot;passthrough&quot;,
+        &quot;cache_retry_without_markers&quot;: false,
+        &quot;cache_read_tokens&quot;: 0,
+        &quot;cache_write_tokens&quot;: null,
+        &quot;cache_usage_invalid&quot;: false,
+        &quot;reported_cost&quot;: null,
+        &quot;prefix_comparison&quot;: &quot;first_request&quot;,
+        &quot;prefix_scope_known&quot;: false,
+        &quot;prefix_system_hash&quot;: &quot;08a93c4662028713b030a8ffe176c7d3f4143bd181b7ce9d2bea4ee7b285d3c6&quot;,
+        &quot;prefix_tools_hash&quot;: &quot;c33fe45dcf580901250ccba0c30bfdd22f923e20fea46d77258d5a243e41bc38&quot;,
+        &quot;prefix_message_count&quot;: 2,
+        &quot;prefix_common_messages&quot;: null,
+        &quot;prefix_common_message_bytes&quot;: null,
+        &quot;prefix_first_changed_message&quot;: null,
+        &quot;prefix_system_changed&quot;: null,
+        &quot;prefix_tools_changed&quot;: null,
+        &quot;prefix_parameters_changed&quot;: null
+      },
+      &quot;ttft_ms&quot;: null
+    }
+  ],
+  &quot;passed&quot;: true
+}</pre></details><details><summary>False / auto</summary><pre>{
+  &quot;stream&quot;: false,
+  &quot;tool_choice&quot;: &quot;auto&quot;,
+  &quot;tools_executed&quot;: 0,
+  &quot;error&quot;: null,
+  &quot;usage&quot;: [
+    {
+      &quot;kind&quot;: &quot;business&quot;,
+      &quot;input_tokens&quot;: 312,
+      &quot;output_tokens&quot;: 64,
+      &quot;elapsed_ms&quot;: 867.8262879984686,
+      &quot;prompt_cache&quot;: {
+        &quot;model&quot;: &quot;deepseek-flash&quot;,
+        &quot;response_model&quot;: &quot;deepseek-flash&quot;,
+        &quot;response_model_matches&quot;: true,
+        &quot;response_model_conflict&quot;: false,
+        &quot;protocol_status&quot;: &quot;valid&quot;,
+        &quot;cache_mode&quot;: &quot;passthrough&quot;,
+        &quot;cache_policy&quot;: &quot;static&quot;,
+        &quot;cache_marker_count&quot;: 0,
+        &quot;cache_reason&quot;: &quot;passthrough&quot;,
+        &quot;cache_retry_without_markers&quot;: false,
+        &quot;cache_read_tokens&quot;: 128,
+        &quot;cache_write_tokens&quot;: null,
+        &quot;cache_usage_invalid&quot;: false,
+        &quot;reported_cost&quot;: null,
+        &quot;prefix_comparison&quot;: &quot;first_request&quot;,
+        &quot;prefix_scope_known&quot;: false,
+        &quot;prefix_system_hash&quot;: &quot;08a93c4662028713b030a8ffe176c7d3f4143bd181b7ce9d2bea4ee7b285d3c6&quot;,
+        &quot;prefix_tools_hash&quot;: &quot;c33fe45dcf580901250ccba0c30bfdd22f923e20fea46d77258d5a243e41bc38&quot;,
+        &quot;prefix_message_count&quot;: 2,
+        &quot;prefix_common_messages&quot;: null,
+        &quot;prefix_common_message_bytes&quot;: null,
+        &quot;prefix_first_changed_message&quot;: null,
+        &quot;prefix_system_changed&quot;: null,
+        &quot;prefix_tools_changed&quot;: null,
+        &quot;prefix_parameters_changed&quot;: null
+      },
+      &quot;ttft_ms&quot;: null
+    }
+  ],
+  &quot;passed&quot;: true
+}</pre></details><details><summary>False / echo_probe</summary><pre>{
+  &quot;stream&quot;: false,
+  &quot;tool_choice&quot;: &quot;echo_probe&quot;,
+  &quot;tools_executed&quot;: 0,
+  &quot;error&quot;: &quot;invalid_request_error&quot;,
+  &quot;usage&quot;: [
+    {
+      &quot;kind&quot;: &quot;business&quot;,
+      &quot;input_tokens&quot;: null,
+      &quot;output_tokens&quot;: null,
+      &quot;elapsed_ms&quot;: 71.80943700222997,
+      &quot;prompt_cache&quot;: {
+        &quot;model&quot;: &quot;deepseek-flash&quot;,
+        &quot;response_model&quot;: null,
+        &quot;response_model_matches&quot;: null,
+        &quot;response_model_conflict&quot;: false,
+        &quot;protocol_status&quot;: &quot;unknown&quot;,
+        &quot;cache_mode&quot;: &quot;passthrough&quot;,
+        &quot;cache_policy&quot;: &quot;static&quot;,
+        &quot;cache_marker_count&quot;: 0,
+        &quot;cache_reason&quot;: &quot;passthrough&quot;,
+        &quot;cache_retry_without_markers&quot;: false,
+        &quot;cache_read_tokens&quot;: null,
+        &quot;cache_write_tokens&quot;: null,
+        &quot;cache_usage_invalid&quot;: false,
+        &quot;reported_cost&quot;: null,
+        &quot;prefix_comparison&quot;: &quot;first_request&quot;,
+        &quot;prefix_scope_known&quot;: false,
+        &quot;prefix_system_hash&quot;: &quot;08a93c4662028713b030a8ffe176c7d3f4143bd181b7ce9d2bea4ee7b285d3c6&quot;,
+        &quot;prefix_tools_hash&quot;: &quot;c33fe45dcf580901250ccba0c30bfdd22f923e20fea46d77258d5a243e41bc38&quot;,
+        &quot;prefix_message_count&quot;: 2,
+        &quot;prefix_common_messages&quot;: null,
+        &quot;prefix_common_message_bytes&quot;: null,
+        &quot;prefix_first_changed_message&quot;: null,
+        &quot;prefix_system_changed&quot;: null,
+        &quot;prefix_tools_changed&quot;: null,
+        &quot;prefix_parameters_changed&quot;: null
+      },
+      &quot;ttft_ms&quot;: null
+    }
+  ],
+  &quot;passed&quot;: false
+}</pre></details><details><summary>True / none</summary><pre>{
+  &quot;stream&quot;: true,
+  &quot;tool_choice&quot;: &quot;none&quot;,
+  &quot;tools_executed&quot;: 0,
+  &quot;error&quot;: null,
+  &quot;usage&quot;: [
+    {
+      &quot;kind&quot;: &quot;business&quot;,
+      &quot;input_tokens&quot;: 50,
+      &quot;output_tokens&quot;: 414,
+      &quot;elapsed_ms&quot;: 2363.9573600012227,
+      &quot;prompt_cache&quot;: {
+        &quot;model&quot;: &quot;deepseek-flash&quot;,
+        &quot;response_model&quot;: &quot;deepseek-flash&quot;,
+        &quot;response_model_matches&quot;: true,
+        &quot;response_model_conflict&quot;: false,
+        &quot;protocol_status&quot;: &quot;valid&quot;,
+        &quot;cache_mode&quot;: &quot;passthrough&quot;,
+        &quot;cache_policy&quot;: &quot;static&quot;,
+        &quot;cache_marker_count&quot;: 0,
+        &quot;cache_reason&quot;: &quot;passthrough&quot;,
+        &quot;cache_retry_without_markers&quot;: false,
+        &quot;cache_read_tokens&quot;: 0,
+        &quot;cache_write_tokens&quot;: null,
+        &quot;cache_usage_invalid&quot;: false,
+        &quot;reported_cost&quot;: null,
+        &quot;prefix_comparison&quot;: &quot;first_request&quot;,
+        &quot;prefix_scope_known&quot;: false,
+        &quot;prefix_system_hash&quot;: &quot;463206c95667be212d66deb55bf224fb335d58cc11cd740abb069459059fba1f&quot;,
+        &quot;prefix_tools_hash&quot;: &quot;d3cecd80c4975e3d26e0636f72abcbd0f1ed275cd9c08c7b8646263c55eb4e22&quot;,
+        &quot;prefix_message_count&quot;: 2,
+        &quot;prefix_common_messages&quot;: null,
+        &quot;prefix_common_message_bytes&quot;: null,
+        &quot;prefix_first_changed_message&quot;: null,
+        &quot;prefix_system_changed&quot;: null,
+        &quot;prefix_tools_changed&quot;: null,
+        &quot;prefix_parameters_changed&quot;: null
+      },
+      &quot;ttft_ms&quot;: 2194.493363997026
+    }
+  ],
+  &quot;passed&quot;: true
+}</pre></details><details><summary>True / auto</summary><pre>{
+  &quot;stream&quot;: true,
+  &quot;tool_choice&quot;: &quot;auto&quot;,
+  &quot;tools_executed&quot;: 0,
+  &quot;error&quot;: null,
+  &quot;usage&quot;: [
+    {
+      &quot;kind&quot;: &quot;business&quot;,
+      &quot;input_tokens&quot;: 312,
+      &quot;output_tokens&quot;: 68,
+      &quot;elapsed_ms&quot;: 580.3405660044518,
+      &quot;prompt_cache&quot;: {
+        &quot;model&quot;: &quot;deepseek-flash&quot;,
+        &quot;response_model&quot;: &quot;deepseek-flash&quot;,
+        &quot;response_model_matches&quot;: true,
+        &quot;response_model_conflict&quot;: false,
+        &quot;protocol_status&quot;: &quot;valid&quot;,
+        &quot;cache_mode&quot;: &quot;passthrough&quot;,
+        &quot;cache_policy&quot;: &quot;static&quot;,
+        &quot;cache_marker_count&quot;: 0,
+        &quot;cache_reason&quot;: &quot;passthrough&quot;,
+        &quot;cache_retry_without_markers&quot;: false,
+        &quot;cache_read_tokens&quot;: 128,
+        &quot;cache_write_tokens&quot;: null,
+        &quot;cache_usage_invalid&quot;: false,
+        &quot;reported_cost&quot;: null,
+        &quot;prefix_comparison&quot;: &quot;first_request&quot;,
+        &quot;prefix_scope_known&quot;: false,
+        &quot;prefix_system_hash&quot;: &quot;463206c95667be212d66deb55bf224fb335d58cc11cd740abb069459059fba1f&quot;,
+        &quot;prefix_tools_hash&quot;: &quot;d3cecd80c4975e3d26e0636f72abcbd0f1ed275cd9c08c7b8646263c55eb4e22&quot;,
+        &quot;prefix_message_count&quot;: 2,
+        &quot;prefix_common_messages&quot;: null,
+        &quot;prefix_common_message_bytes&quot;: null,
+        &quot;prefix_first_changed_message&quot;: null,
+        &quot;prefix_system_changed&quot;: null,
+        &quot;prefix_tools_changed&quot;: null,
+        &quot;prefix_parameters_changed&quot;: null
+      },
+      &quot;ttft_ms&quot;: null
+    }
+  ],
+  &quot;passed&quot;: true
+}</pre></details><details><summary>True / echo_probe</summary><pre>{
+  &quot;stream&quot;: true,
+  &quot;tool_choice&quot;: &quot;echo_probe&quot;,
+  &quot;tools_executed&quot;: 0,
+  &quot;error&quot;: &quot;invalid_request_error&quot;,
+  &quot;usage&quot;: [
+    {
+      &quot;kind&quot;: &quot;business&quot;,
+      &quot;input_tokens&quot;: null,
+      &quot;output_tokens&quot;: null,
+      &quot;elapsed_ms&quot;: 93.95780900376849,
+      &quot;prompt_cache&quot;: {
+        &quot;model&quot;: &quot;deepseek-flash&quot;,
+        &quot;response_model&quot;: null,
+        &quot;response_model_matches&quot;: null,
+        &quot;response_model_conflict&quot;: false,
+        &quot;protocol_status&quot;: &quot;unknown&quot;,
+        &quot;cache_mode&quot;: &quot;passthrough&quot;,
+        &quot;cache_policy&quot;: &quot;static&quot;,
+        &quot;cache_marker_count&quot;: 0,
+        &quot;cache_reason&quot;: &quot;passthrough&quot;,
+        &quot;cache_retry_without_markers&quot;: false,
+        &quot;cache_read_tokens&quot;: null,
+        &quot;cache_write_tokens&quot;: null,
+        &quot;cache_usage_invalid&quot;: false,
+        &quot;reported_cost&quot;: null,
+        &quot;prefix_comparison&quot;: &quot;first_request&quot;,
+        &quot;prefix_scope_known&quot;: false,
+        &quot;prefix_system_hash&quot;: &quot;463206c95667be212d66deb55bf224fb335d58cc11cd740abb069459059fba1f&quot;,
+        &quot;prefix_tools_hash&quot;: &quot;d3cecd80c4975e3d26e0636f72abcbd0f1ed275cd9c08c7b8646263c55eb4e22&quot;,
+        &quot;prefix_message_count&quot;: 2,
+        &quot;prefix_common_messages&quot;: null,
+        &quot;prefix_common_message_bytes&quot;: null,
+        &quot;prefix_first_changed_message&quot;: null,
+        &quot;prefix_system_changed&quot;: null,
+        &quot;prefix_tools_changed&quot;: null,
+        &quot;prefix_parameters_changed&quot;: null
+      },
+      &quot;ttft_ms&quot;: null
+    }
+  ],
+  &quot;passed&quot;: false
+}</pre></details>

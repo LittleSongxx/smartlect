@@ -1,0 +1,421 @@
+{
+  "runs_total": 36,
+  "summary": {
+    "layered": {
+      "runs": 18,
+      "passed": 18,
+      "input_tokens": 6384883,
+      "output_tokens": 136797,
+      "model_calls": 974,
+      "success_rate": 1.0
+    },
+    "legacy": {
+      "runs": 18,
+      "passed": 18,
+      "input_tokens": 9775297,
+      "output_tokens": 181579,
+      "model_calls": 976,
+      "success_rate": 1.0
+    },
+    "layered_vs_legacy_input_reduction": 0.34683488389150735
+  },
+  "rows": [
+    {
+      "case_id": "v3-hold-long-b",
+      "strategy": "layered",
+      "repetition": 0,
+      "passed": true,
+      "error": null,
+      "input_tokens": 339337,
+      "output_tokens": 8544,
+      "model_calls": 54,
+      "elapsed_ms": 540825
+    },
+    {
+      "case_id": "v3-hold-long-b",
+      "strategy": "layered",
+      "repetition": 1,
+      "passed": true,
+      "error": null,
+      "input_tokens": 334430,
+      "output_tokens": 8186,
+      "model_calls": 54,
+      "elapsed_ms": 537485
+    },
+    {
+      "case_id": "v3-hold-long-b",
+      "strategy": "layered",
+      "repetition": 2,
+      "passed": true,
+      "error": null,
+      "input_tokens": 343371,
+      "output_tokens": 8818,
+      "model_calls": 54,
+      "elapsed_ms": 546003
+    },
+    {
+      "case_id": "v3-hold-long-b",
+      "strategy": "legacy",
+      "repetition": 0,
+      "passed": true,
+      "error": null,
+      "input_tokens": 552202,
+      "output_tokens": 11150,
+      "model_calls": 54,
+      "elapsed_ms": 535983
+    },
+    {
+      "case_id": "v3-hold-long-b",
+      "strategy": "legacy",
+      "repetition": 1,
+      "passed": true,
+      "error": null,
+      "input_tokens": 531116,
+      "output_tokens": 9200,
+      "model_calls": 54,
+      "elapsed_ms": 539831
+    },
+    {
+      "case_id": "v3-hold-long-b",
+      "strategy": "legacy",
+      "repetition": 2,
+      "passed": true,
+      "error": null,
+      "input_tokens": 534558,
+      "output_tokens": 10241,
+      "model_calls": 54,
+      "elapsed_ms": 532910
+    },
+    {
+      "case_id": "v3-hold-long-c",
+      "strategy": "layered",
+      "repetition": 0,
+      "passed": true,
+      "error": null,
+      "input_tokens": 353244,
+      "output_tokens": 10809,
+      "model_calls": 54,
+      "elapsed_ms": 540598
+    },
+    {
+      "case_id": "v3-hold-long-c",
+      "strategy": "layered",
+      "repetition": 1,
+      "passed": true,
+      "error": null,
+      "input_tokens": 334014,
+      "output_tokens": 7067,
+      "model_calls": 54,
+      "elapsed_ms": 527166
+    },
+    {
+      "case_id": "v3-hold-long-c",
+      "strategy": "layered",
+      "repetition": 2,
+      "passed": true,
+      "error": null,
+      "input_tokens": 323685,
+      "output_tokens": 6570,
+      "model_calls": 54,
+      "elapsed_ms": 535154
+    },
+    {
+      "case_id": "v3-hold-long-c",
+      "strategy": "legacy",
+      "repetition": 0,
+      "passed": true,
+      "error": null,
+      "input_tokens": 522226,
+      "output_tokens": 8840,
+      "model_calls": 54,
+      "elapsed_ms": 535545
+    },
+    {
+      "case_id": "v3-hold-long-c",
+      "strategy": "legacy",
+      "repetition": 1,
+      "passed": true,
+      "error": null,
+      "input_tokens": 557793,
+      "output_tokens": 12110,
+      "model_calls": 54,
+      "elapsed_ms": 541404
+    },
+    {
+      "case_id": "v3-hold-long-c",
+      "strategy": "legacy",
+      "repetition": 2,
+      "passed": true,
+      "error": null,
+      "input_tokens": 521171,
+      "output_tokens": 8049,
+      "model_calls": 54,
+      "elapsed_ms": 542042
+    },
+    {
+      "case_id": "v3-hold-long-d",
+      "strategy": "layered",
+      "repetition": 0,
+      "passed": true,
+      "error": null,
+      "input_tokens": 355927,
+      "output_tokens": 6396,
+      "model_calls": 54,
+      "elapsed_ms": 535605
+    },
+    {
+      "case_id": "v3-hold-long-d",
+      "strategy": "layered",
+      "repetition": 1,
+      "passed": true,
+      "error": null,
+      "input_tokens": 356572,
+      "output_tokens": 6548,
+      "model_calls": 54,
+      "elapsed_ms": 527216
+    },
+    {
+      "case_id": "v3-hold-long-d",
+      "strategy": "layered",
+      "repetition": 2,
+      "passed": true,
+      "error": null,
+      "input_tokens": 384312,
+      "output_tokens": 7972,
+      "model_calls": 55,
+      "elapsed_ms": 549973
+    },
+    {
+      "case_id": "v3-hold-long-d",
+      "strategy": "legacy",
+      "repetition": 0,
+      "passed": true,
+      "error": null,
+      "input_tokens": 542294,
+      "output_tokens": 9469,
+      "model_calls": 54,
+      "elapsed_ms": 540509
+    },
+    {
+      "case_id": "v3-hold-long-d",
+      "strategy": "legacy",
+      "repetition": 1,
+      "passed": true,
+      "error": null,
+      "input_tokens": 537708,
+      "output_tokens": 10064,
+      "model_calls": 54,
+      "elapsed_ms": 545563
+    },
+    {
+      "case_id": "v3-hold-long-d",
+      "strategy": "legacy",
+      "repetition": 2,
+      "passed": true,
+      "error": null,
+      "input_tokens": 543940,
+      "output_tokens": 9297,
+      "model_calls": 54,
+      "elapsed_ms": 541641
+    },
+    {
+      "case_id": "v3-hold-long-e",
+      "strategy": "layered",
+      "repetition": 0,
+      "passed": true,
+      "error": null,
+      "input_tokens": 374980,
+      "output_tokens": 8133,
+      "model_calls": 54,
+      "elapsed_ms": 541220
+    },
+    {
+      "case_id": "v3-hold-long-e",
+      "strategy": "layered",
+      "repetition": 1,
+      "passed": true,
+      "error": null,
+      "input_tokens": 364139,
+      "output_tokens": 7505,
+      "model_calls": 54,
+      "elapsed_ms": 542617
+    },
+    {
+      "case_id": "v3-hold-long-e",
+      "strategy": "layered",
+      "repetition": 2,
+      "passed": true,
+      "error": null,
+      "input_tokens": 361147,
+      "output_tokens": 7622,
+      "model_calls": 54,
+      "elapsed_ms": 534234
+    },
+    {
+      "case_id": "v3-hold-long-e",
+      "strategy": "legacy",
+      "repetition": 0,
+      "passed": true,
+      "error": null,
+      "input_tokens": 549451,
+      "output_tokens": 10284,
+      "model_calls": 54,
+      "elapsed_ms": 534539
+    },
+    {
+      "case_id": "v3-hold-long-e",
+      "strategy": "legacy",
+      "repetition": 1,
+      "passed": true,
+      "error": null,
+      "input_tokens": 541112,
+      "output_tokens": 10606,
+      "model_calls": 54,
+      "elapsed_ms": 541401
+    },
+    {
+      "case_id": "v3-hold-long-e",
+      "strategy": "legacy",
+      "repetition": 2,
+      "passed": true,
+      "error": null,
+      "input_tokens": 521525,
+      "output_tokens": 8425,
+      "model_calls": 54,
+      "elapsed_ms": 527075
+    },
+    {
+      "case_id": "v3-hold-long-f",
+      "strategy": "layered",
+      "repetition": 0,
+      "passed": true,
+      "error": null,
+      "input_tokens": 367910,
+      "output_tokens": 7753,
+      "model_calls": 54,
+      "elapsed_ms": 540457
+    },
+    {
+      "case_id": "v3-hold-long-f",
+      "strategy": "layered",
+      "repetition": 1,
+      "passed": true,
+      "error": null,
+      "input_tokens": 347178,
+      "output_tokens": 5958,
+      "model_calls": 54,
+      "elapsed_ms": 537852
+    },
+    {
+      "case_id": "v3-hold-long-f",
+      "strategy": "layered",
+      "repetition": 2,
+      "passed": true,
+      "error": null,
+      "input_tokens": 371896,
+      "output_tokens": 7660,
+      "model_calls": 54,
+      "elapsed_ms": 534385
+    },
+    {
+      "case_id": "v3-hold-long-f",
+      "strategy": "legacy",
+      "repetition": 0,
+      "passed": true,
+      "error": null,
+      "input_tokens": 546421,
+      "output_tokens": 9498,
+      "model_calls": 55,
+      "elapsed_ms": 545379
+    },
+    {
+      "case_id": "v3-hold-long-f",
+      "strategy": "legacy",
+      "repetition": 1,
+      "passed": true,
+      "error": null,
+      "input_tokens": 542111,
+      "output_tokens": 9919,
+      "model_calls": 54,
+      "elapsed_ms": 541147
+    },
+    {
+      "case_id": "v3-hold-long-f",
+      "strategy": "legacy",
+      "repetition": 2,
+      "passed": true,
+      "error": null,
+      "input_tokens": 543246,
+      "output_tokens": 10615,
+      "model_calls": 54,
+      "elapsed_ms": 532159
+    },
+    {
+      "case_id": "v3-hold-long-a",
+      "strategy": "layered",
+      "repetition": 0,
+      "passed": true,
+      "error": null,
+      "input_tokens": 350882,
+      "output_tokens": 6319,
+      "model_calls": 54,
+      "elapsed_ms": 534607
+    },
+    {
+      "case_id": "v3-hold-long-a",
+      "strategy": "layered",
+      "repetition": 1,
+      "passed": true,
+      "error": null,
+      "input_tokens": 354653,
+      "output_tokens": 7381,
+      "model_calls": 54,
+      "elapsed_ms": 524454
+    },
+    {
+      "case_id": "v3-hold-long-a",
+      "strategy": "layered",
+      "repetition": 2,
+      "passed": true,
+      "error": null,
+      "input_tokens": 367206,
+      "output_tokens": 7556,
+      "model_calls": 55,
+      "elapsed_ms": 539033
+    },
+    {
+      "case_id": "v3-hold-long-a",
+      "strategy": "legacy",
+      "repetition": 0,
+      "passed": true,
+      "error": null,
+      "input_tokens": 531980,
+      "output_tokens": 9563,
+      "model_calls": 54,
+      "elapsed_ms": 546355
+    },
+    {
+      "case_id": "v3-hold-long-a",
+      "strategy": "legacy",
+      "repetition": 1,
+      "passed": true,
+      "error": null,
+      "input_tokens": 577306,
+      "output_tokens": 11729,
+      "model_calls": 56,
+      "elapsed_ms": 566367
+    },
+    {
+      "case_id": "v3-hold-long-a",
+      "strategy": "legacy",
+      "repetition": 2,
+      "passed": true,
+      "error": null,
+      "input_tokens": 579137,
+      "output_tokens": 12520,
+      "model_calls": 55,
+      "elapsed_ms": 558398
+    }
+  ],
+  "notes": "input_tokens 从逐请求 usage 求和；延迟为共享网关环境。"
+}

@@ -1,0 +1,9 @@
+{
+  "requested_model": "deepseek-flash",
+  "passed": true,
+  "source_sha256": "aed435d639fdf8ab9c8fcad4d74ba42d7806d0d573acbd24c01f387d4cbeecc8",
+  "source_stable": true,
+  "calls": 6,
+  "tools_executed": 0,
+  "scope": "服务预检；不等于业务质量、BP或真实费用收益验收。"
+}

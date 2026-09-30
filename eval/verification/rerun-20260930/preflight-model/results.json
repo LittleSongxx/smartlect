@@ -1,0 +1,260 @@
+[
+  {
+    "stream": false,
+    "tool_choice": "none",
+    "tools_executed": 0,
+    "error": null,
+    "usage": [
+      {
+        "kind": "business",
+        "input_tokens": 50,
+        "output_tokens": 369,
+        "elapsed_ms": 2094.0048600023147,
+        "prompt_cache": {
+          "model": "deepseek-flash",
+          "response_model": "deepseek-flash",
+          "response_model_matches": true,
+          "response_model_conflict": false,
+          "protocol_status": "valid",
+          "cache_mode": "passthrough",
+          "cache_policy": "static",
+          "cache_marker_count": 0,
+          "cache_reason": "passthrough",
+          "cache_retry_without_markers": false,
+          "cache_read_tokens": 0,
+          "cache_write_tokens": null,
+          "cache_usage_invalid": false,
+          "reported_cost": null,
+          "prefix_comparison": "first_request",
+          "prefix_scope_known": false,
+          "prefix_system_hash": "08a93c4662028713b030a8ffe176c7d3f4143bd181b7ce9d2bea4ee7b285d3c6",
+          "prefix_tools_hash": "c33fe45dcf580901250ccba0c30bfdd22f923e20fea46d77258d5a243e41bc38",
+          "prefix_message_count": 2,
+          "prefix_common_messages": null,
+          "prefix_common_message_bytes": null,
+          "prefix_first_changed_message": null,
+          "prefix_system_changed": null,
+          "prefix_tools_changed": null,
+          "prefix_parameters_changed": null
+        },
+        "ttft_ms": null
+      }
+    ],
+    "passed": true
+  },
+  {
+    "stream": false,
+    "tool_choice": "auto",
+    "tools_executed": 0,
+    "error": null,
+    "usage": [
+      {
+        "kind": "business",
+        "input_tokens": 312,
+        "output_tokens": 64,
+        "elapsed_ms": 867.8262879984686,
+        "prompt_cache": {
+          "model": "deepseek-flash",
+          "response_model": "deepseek-flash",
+          "response_model_matches": true,
+          "response_model_conflict": false,
+          "protocol_status": "valid",
+          "cache_mode": "passthrough",
+          "cache_policy": "static",
+          "cache_marker_count": 0,
+          "cache_reason": "passthrough",
+          "cache_retry_without_markers": false,
+          "cache_read_tokens": 128,
+          "cache_write_tokens": null,
+          "cache_usage_invalid": false,
+          "reported_cost": null,
+          "prefix_comparison": "first_request",
+          "prefix_scope_known": false,
+          "prefix_system_hash": "08a93c4662028713b030a8ffe176c7d3f4143bd181b7ce9d2bea4ee7b285d3c6",
+          "prefix_tools_hash": "c33fe45dcf580901250ccba0c30bfdd22f923e20fea46d77258d5a243e41bc38",
+          "prefix_message_count": 2,
+          "prefix_common_messages": null,
+          "prefix_common_message_bytes": null,
+          "prefix_first_changed_message": null,
+          "prefix_system_changed": null,
+          "prefix_tools_changed": null,
+          "prefix_parameters_changed": null
+        },
+        "ttft_ms": null
+      }
+    ],
+    "passed": true
+  },
+  {
+    "stream": false,
+    "tool_choice": "echo_probe",
+    "tools_executed": 0,
+    "error": "invalid_request_error",
+    "usage": [
+      {
+        "kind": "business",
+        "input_tokens": null,
+        "output_tokens": null,
+        "elapsed_ms": 71.80943700222997,
+        "prompt_cache": {
+          "model": "deepseek-flash",
+          "response_model": null,
+          "response_model_matches": null,
+          "response_model_conflict": false,
+          "protocol_status": "unknown",
+          "cache_mode": "passthrough",
+          "cache_policy": "static",
+          "cache_marker_count": 0,
+          "cache_reason": "passthrough",
+          "cache_retry_without_markers": false,
+          "cache_read_tokens": null,
+          "cache_write_tokens": null,
+          "cache_usage_invalid": false,
+          "reported_cost": null,
+          "prefix_comparison": "first_request",
+          "prefix_scope_known": false,
+          "prefix_system_hash": "08a93c4662028713b030a8ffe176c7d3f4143bd181b7ce9d2bea4ee7b285d3c6",
+          "prefix_tools_hash": "c33fe45dcf580901250ccba0c30bfdd22f923e20fea46d77258d5a243e41bc38",
+          "prefix_message_count": 2,
+          "prefix_common_messages": null,
+          "prefix_common_message_bytes": null,
+          "prefix_first_changed_message": null,
+          "prefix_system_changed": null,
+          "prefix_tools_changed": null,
+          "prefix_parameters_changed": null
+        },
+        "ttft_ms": null
+      }
+    ],
+    "passed": false
+  },
+  {
+    "stream": true,
+    "tool_choice": "none",
+    "tools_executed": 0,
+    "error": null,
+    "usage": [
+      {
+        "kind": "business",
+        "input_tokens": 50,
+        "output_tokens": 414,
+        "elapsed_ms": 2363.9573600012227,
+        "prompt_cache": {
+          "model": "deepseek-flash",
+          "response_model": "deepseek-flash",
+          "response_model_matches": true,
+          "response_model_conflict": false,
+          "protocol_status": "valid",
+          "cache_mode": "passthrough",
+          "cache_policy": "static",
+          "cache_marker_count": 0,
+          "cache_reason": "passthrough",
+          "cache_retry_without_markers": false,
+          "cache_read_tokens": 0,
+          "cache_write_tokens": null,
+          "cache_usage_invalid": false,
+          "reported_cost": null,
+          "prefix_comparison": "first_request",
+          "prefix_scope_known": false,
+          "prefix_system_hash": "463206c95667be212d66deb55bf224fb335d58cc11cd740abb069459059fba1f",
+          "prefix_tools_hash": "d3cecd80c4975e3d26e0636f72abcbd0f1ed275cd9c08c7b8646263c55eb4e22",
+          "prefix_message_count": 2,
+          "prefix_common_messages": null,
+          "prefix_common_message_bytes": null,
+          "prefix_first_changed_message": null,
+          "prefix_system_changed": null,
+          "prefix_tools_changed": null,
+          "prefix_parameters_changed": null
+        },
+        "ttft_ms": 2194.493363997026
+      }
+    ],
+    "passed": true
+  },
+  {
+    "stream": true,
+    "tool_choice": "auto",
+    "tools_executed": 0,
+    "error": null,
+    "usage": [
+      {
+        "kind": "business",
+        "input_tokens": 312,
+        "output_tokens": 68,
+        "elapsed_ms": 580.3405660044518,
+        "prompt_cache": {
+          "model": "deepseek-flash",
+          "response_model": "deepseek-flash",
+          "response_model_matches": true,
+          "response_model_conflict": false,
+          "protocol_status": "valid",
+          "cache_mode": "passthrough",
+          "cache_policy": "static",
+          "cache_marker_count": 0,
+          "cache_reason": "passthrough",
+          "cache_retry_without_markers": false,
+          "cache_read_tokens": 128,
+          "cache_write_tokens": null,
+          "cache_usage_invalid": false,
+          "reported_cost": null,
+          "prefix_comparison": "first_request",
+          "prefix_scope_known": false,
+          "prefix_system_hash": "463206c95667be212d66deb55bf224fb335d58cc11cd740abb069459059fba1f",
+          "prefix_tools_hash": "d3cecd80c4975e3d26e0636f72abcbd0f1ed275cd9c08c7b8646263c55eb4e22",
+          "prefix_message_count": 2,
+          "prefix_common_messages": null,
+          "prefix_common_message_bytes": null,
+          "prefix_first_changed_message": null,
+          "prefix_system_changed": null,
+          "prefix_tools_changed": null,
+          "prefix_parameters_changed": null
+        },
+        "ttft_ms": null
+      }
+    ],
+    "passed": true
+  },
+  {
+    "stream": true,
+    "tool_choice": "echo_probe",
+    "tools_executed": 0,
+    "error": "invalid_request_error",
+    "usage": [
+      {
+        "kind": "business",
+        "input_tokens": null,
+        "output_tokens": null,
+        "elapsed_ms": 93.95780900376849,
+        "prompt_cache": {
+          "model": "deepseek-flash",
+          "response_model": null,
+          "response_model_matches": null,
+          "response_model_conflict": false,
+          "protocol_status": "unknown",
+          "cache_mode": "passthrough",
+          "cache_policy": "static",
+          "cache_marker_count": 0,
+          "cache_reason": "passthrough",
+          "cache_retry_without_markers": false,
+          "cache_read_tokens": null,
+          "cache_write_tokens": null,
+          "cache_usage_invalid": false,
+          "reported_cost": null,
+          "prefix_comparison": "first_request",
+          "prefix_scope_known": false,
+          "prefix_system_hash": "463206c95667be212d66deb55bf224fb335d58cc11cd740abb069459059fba1f",
+          "prefix_tools_hash": "d3cecd80c4975e3d26e0636f72abcbd0f1ed275cd9c08c7b8646263c55eb4e22",
+          "prefix_message_count": 2,
+          "prefix_common_messages": null,
+          "prefix_common_message_bytes": null,
+          "prefix_first_changed_message": null,
+          "prefix_system_changed": null,
+          "prefix_tools_changed": null,
+          "prefix_parameters_changed": null
+        },
+        "ttft_ms": null
+      }
+    ],
+    "passed": false
+  }
+]

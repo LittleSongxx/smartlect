@@ -1,0 +1,17 @@
+{
+  "embedding": {
+    "endpoint": "https://llm-en3p4oz5m2rwwgvv.cn-beijing.maas.aliyuncs.com/compatible-mode/v1",
+    "model": "qwen3.7-text-embedding",
+    "status": "PASS",
+    "dimensions": 1024
+  },
+  "reranker": {
+    "endpoint": "https://llm-en3p4oz5m2rwwgvv.cn-beijing.maas.aliyuncs.com/api/v1/services/rerank/text-rerank/text-rerank",
+    "model": "qwen3.7-text-rerank",
+    "status": "PASS",
+    "scores": [
+      0.7856737669386653,
+      0.006054243832771644
+    ]
+  }
+}
