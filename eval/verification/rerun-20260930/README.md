@@ -11,7 +11,7 @@
 | 检索 v2 dev（16 查询） | 各档全 1.000 | [retrieval-dev/](retrieval-dev/) | 全 live 路径 |
 | 检索 v2 holdout（54 查询） | hybrid+reranker **Recall@5 0.990 / MRR 1.000 / NDCG 0.992** | [retrieval-holdout-final/](retrieval-holdout-final/) | 召回池多样化改造后复跑，与改造前逐位一致（零回退） |
 | 上下文治理（36 runs） | 36/36 通过；layered 相对 legacy input 降幅 **34.68%**（9.78M→6.38M tokens） | [context-holdout/](context-holdout/)（场景 a）+ [context-holdout-b/](context-holdout-b/) … [context-holdout-f/](context-holdout-f/)（场景 b–f，各 6 runs）；汇总 [context-summary.json](context-summary.json) | run 级 input_tokens 字段在本网关下为 None，数值由 [summarize_context.py](summarize_context.py) 从逐请求 usage 求和（可复算：`python3 summarize_context.py`） |
-| 记忆提取（12 例） | **12/12 PASS** | [memory-extraction.json](memory-extraction.json) | deepseek-flash |
+| 记忆提取（50 例＝原 12 + 38 扩充） | **50/50 PASS** | [memory-extraction-50.json](memory-extraction-50.json)（扩充前 12 例：[memory-extraction.json](memory-extraction.json)） | deepseek-flash；样本仍属小规模规则评测，不代表生产准确率 |
 | Agent 门禁（release 30 用例） | **27/30 PASS，均分 0.950** | [agent-release-fixed/](agent-release-fixed/) | memory_multiturn 5/5 恢复；3 例失败均为 0.5 分表达类软失败 |
 | 品类知识召回 | **Recall@3 1.000 / MRR 0.977 / NDCG 0.979，门禁 PASS** | [category-recall-fixed-k3-v2/](category-recall-fixed-k3-v2/)（@3 对齐旧口径）；[category-recall-fixed/](category-recall-fixed/)（@5：1.000/0.977/0.979，Precision 按标注集上限校准） | eval-* 快照分治后 |
 | 商品召回正式门禁（扩充后 v1 release 225 条，K=3） | **PASS（修复后）：Recall@3 0.991 / MRR 1.000 / NDCG 0.981 / 负例 70/70 / 零降级**（composite 0.987 / semantic 0.982 / literal 1.000；K=8 0.994） | [product-recall-fixed-arch-k3-v2/](product-recall-fixed-arch-k3-v2/)（K=8：[fixed-arch-k8/](product-recall-fixed-arch-k8/)） | 主链路约束预过滤修复后；扩充集暴露盲区的过程证据 [expanded-k3/](product-recall-expanded-k3/)（0.742 BLOCK）保留 |
@@ -46,17 +46,17 @@
 
 ## 数值适用边界（必读）
 
-**全指标严口径审计（2026-09-30）**：对每项指标给出规模、严读数（R@1 = 首位命中）与已知局限，避免只看标称值：
+**全指标严口径审计（2026-09-30，2026-10-01 更正两处）**：对每项指标给出规模、严读数（R@1 = 首位命中）与已知局限，避免只看标称值。**注意：R@1 只有 `scripts/eval/retrieval_v2.py` 会直接产出**；商品召回与品类召回的 R@1 是从各目录 manifest 的逐题召回序离线复算的，复算脚本见 [../readme-metrics-20261001/recompute_top1.py](../readme-metrics-20261001/recompute_top1.py)。
 
 | 指标 | 规模 | 标称值 | 严读数 R@1 | 已知局限 |
 | --- | --- | --- | --- | --- |
 | 检索 v2 hard | 54 条（48 正例，平均 7.4 金标） | R@5 0.995 | **0.649** | 查询与描述同源模板；R@5 含标注洞保守扣分 |
-| 商品召回 v1 正式集 | **225 条（155 正例+70 负例）** | **R@3 0.991 门禁 PASS**（修复后；暴露期 0.742 BLOCK 证据保留） | 0.811（扩充前 45 条口径） | 统计稳健（CI 半宽 ±0.072、负例排除 >4.3% 泄漏）；0.742→0.991 的修复链 = 主链路约束预过滤 + 金标完备性回补 |
+| 商品召回 v1 正式集 | **225 条（155 正例+70 负例）** | **R@3 0.991 门禁 PASS**（修复后；暴露期 0.742 BLOCK 证据保留） | **1.000**（155/155，由 manifest 召回序复算；扩充前 45 例为 0.946 = 35/37） | 统计稳健（CI 半宽 ±0.072、负例排除 >4.3% 泄漏）；0.742→0.991 的修复链 = 主链路约束预过滤 + 金标完备性回补。**2026-10-01 更正**：本格原写 0.811，那是 67 条体检集 semantic 桶在 K=8 下的 MRR，不是本集合的 R@1；复算见 [../readme-metrics-20261001/](../readme-metrics-20261001/) |
 | 品类知识召回 | 22 题 | R@3 1.000 | **0.955**（21/22） | **候选池仅 5 篇文档**——任务窄是线上库的真实状态，非评测缺陷 |
 | Agent 门禁 | release 30 例 | 27/30（0.950） | — | **judge 与被测同为 deepseek-flash（自评偏宽风险）**；P0 为程序断言不受影响；3 例失败均 0.5 分软失败 |
 | 记忆提取 | **50 例**（原 12 + 38 扩充） | **50/50** | — | 扩充含 2 例 case 设计缺陷修正与 2 个真发现（例外拆分行为不稳定、场景限定冲突判定不一致），见改动记录 |
 | 上下文治理 | 6 场景×2 策略×3 次 | 36/36，降幅 34.68% | — | 36/36 为确定性事实保留断言非模糊评分；本轮未算 bootstrap CI（工具依赖单目录网格，已注明） |
-| 后端回归 / 模型预检 | 1467 测试 / 6 用例 | 全绿 / 6/6 | — | 工程门禁与协议检查，非质量指标 |
+| 后端回归 / 模型预检 | 1468 项收集 / 6 用例 | **1465 passed / 2 failed / 1 skipped**（2026-10-01 用 Redis 7.4.11 复跑）/ 6/6 | — | 工程门禁与协议检查，非质量指标。**2026-10-01 更正**：本格原写「1467 测试 全绿」，与当时的原始日志不符；2 项失败为 OTLP 派生头断言（另有 1 项队列租约偶发，三次全量出现在其中一次），均与检索链路无关，复跑与归因见 [../readme-metrics-20261001/](../readme-metrics-20261001/) |
 
 检索 v2 的 0.990/1.000/0.992 是**受控易题上的管线对照值**，不等于真实用户查询的召回率：
 
