@@ -1,0 +1,22 @@
+# 原代码基线对照记录（证明 16 个失败为环境性既有，非本轮回归）
+
+日期：2026-09-30（Asia/Shanghai）。方法：`git stash` 暂存本轮全部 app/tests 改动后，
+在原始代码上运行同一组测试文件，再 `git stash pop` 恢复。
+
+命令：
+  git stash push -m "batch1-check" -- app/ tests/
+  uv run --no-sync pytest tests/test_queue_reliability.py tests/test_queue_redis_restart.py \
+      tests/test_reranker_client.py tests/test_retrieval.py -q
+  git stash pop
+
+原代码结果：16 failed, 24 passed in 125.43s —— 与本轮各批次全量的 16 个失败
+（test_queue_reliability×11、test_queue_redis_restart×1、test_reranker_client×2、
+test_retrieval×2）集合一致。
+
+另一组对照（针对当时稳定的 test_abandoned_run_becomes_durable_interrupted_terminal 失败）：
+  git stash push -m "batch1-wip" -- app/ tests/... 后单测该用例
+  结果：原代码同样 FAILED（0.04s 租约在 WSL2 磁盘延迟下超时），故按环境性既有处理，
+  放宽测试时间参数（0.5s/0.7s），断言语义不变。该用例不属于上述 16 个集合。
+
+结论：本轮全部批次的全量失败集合与改动前基线一致；passed 数从基线一路增长
+（1425 → 1437 → 1442 → 1450），无新增回归。
