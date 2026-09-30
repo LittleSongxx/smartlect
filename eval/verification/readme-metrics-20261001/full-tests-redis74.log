@@ -1,0 +1,157 @@
+started_at: 2026-10-01T01:29:40+08:00
+redis_bin : /home/song/.local/bin/redis-server-7.4 (Redis server v=7.4.11 sha=00000000:0 malloc=jemalloc-5.3.0 bits=64 build=9e01046925f71771)
+command   : .venv/bin/python -m pytest tests/ -q -p no:cacheprovider
+tree      : ad83c87 + uncommitted (README/evidence/settings comment)
+------------------------------------------------------------
+........................................................................ [  4%]
+........................................................................ [  9%]
+........................................................................ [ 14%]
+........................................................................ [ 19%]
+........................................................................ [ 24%]
+........................................................................ [ 29%]
+........................................................................ [ 34%]
+........................................................................ [ 39%]
+...................................................F.................... [ 44%]
+........................................................................ [ 49%]
+........................................................................ [ 53%]
+........................................................................ [ 58%]
+........................................................................ [ 63%]
+...................................................s.................... [ 68%]
+........................................................................ [ 73%]
+........................................................................ [ 78%]
+........................................................................ [ 83%]
+........................................................................ [ 88%]
+..................................................F..................... [ 93%]
+........................................................................ [ 98%]
+............................                                             [100%]
+=================================== FAILURES ===================================
+___________ test_derived_config_uses_real_otlp_sanitizer_and_v4_http ___________
+
+collector = namespace(endpoint='http://127.0.0.1:43019/api/public/otel', captured=[('/api/public/otel/v1/traces', {'Host': '127.0....ect.content.redacted\x12\x02\x10\x01J\x1f\n\x19gen_ai.usage.input_tokens\x12\x02\x18\rz\x00\x85\x01\x00\x01\x00\x00')])
+
+    def test_derived_config_uses_real_otlp_sanitizer_and_v4_http(collector):
+        base_url = collector.endpoint.removesuffix("/api/public/otel")
+        provider = create_tracer_provider(settings(langfuse_base_url=base_url,
+            langfuse_public_key=PUBLIC, langfuse_secret_key=SECRET))
+        with provider.get_tracer("verification").start_as_current_span("local-test") as span:
+            span.set_attribute("gen_ai.input.messages", SECRET)
+            span.set_attribute("gen_ai.usage.input_tokens", 13)
+        assert provider.force_flush()
+        provider.shutdown()
+        path, headers, _batch, raw = collector.captured[0]
+        assert path == "/api/public/otel/v1/traces"
+        assert headers["Authorization"] == AUTH
+>       assert headers["x-langfuse-ingestion-version"] == "4"
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       KeyError: 'x-langfuse-ingestion-version'
+
+tests/test_langfuse_verification.py:219: KeyError
+_______ test_otlp_real_http_path_auth_and_native_agentscope_parent_chain _______
+
+traced = namespace(provider=<opentelemetry.sdk.trace.TracerProvider object at 0x715b0fba2b90>, collector=namespace(endpoint='ht...2\x07\n\x05agentz\x02\x18\x01\x85\x01\x00\x01\x00\x00')]), authentication='Basic cGstbG9jYWwtdGVzdDpzay1sb2NhbC10ZXN0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x715b08838710>
+
+    async def test_otlp_real_http_path_auth_and_native_agentscope_parent_chain(traced, monkeypatch):
+        from app.presentation.server import _enqueue
+        from app import worker
+    
+        bus = TradeEventBus()
+        queue = []
+        observed = bus.subscribe("session-private")
+    
+        async def enqueue(task):
+            # 与 Redis 一样通过 JSON 边界，确认标准 carrier 字段不会在进程边界丢失。
+            queue.append(IntentTask.from_dict(json.loads(json.dumps(task.to_dict()))))
+    
+        container = SimpleNamespace(task_queue=SimpleNamespace(enqueue=enqueue, get_status=AsyncMock(return_value=SimpleNamespace(state="queued"))), bus=bus,
+            settings=SimpleNamespace(queue_priority_enabled=False), cache=SimpleNamespace(enabled=False))
+        api = FastAPI()
+        api.add_middleware(TracingASGIMiddleware)
+    
+        @api.post("/commerce/intents/async")
+        async def submit():
+            task_id = await _enqueue(container, SubmitIntentInput("session-private", "buyer-private", "zh-CN", "CNY", SECRET), request_id="client-submit-1")
+            return {"task_id": task_id}
+    
+        async with httpx.AsyncClient(transport=httpx.ASGITransport(app=api), base_url="http://test") as client:
+            response = await client.post("/commerce/intents/async", headers={"tracestate": "vendor=state"})
+        assert response.status_code == 200 and len(response.headers["x-trace-id"]) == 32
+        task = queue[0]
+        assert task.request_id == response.headers["x-request-id"]
+        assert task.traceparent.split("-")[1] == response.headers["x-trace-id"]
+        assert task.raw_query == SECRET
+    
+        middleware = TracingMiddleware()
+        agent = SimpleNamespace(name="TraceTestAgent", state=SimpleNamespace(session_id="native-session", reply_id="reply-test"), toolkit=SimpleNamespace(tools={}))
+        model = _build([])
+    
+        class NativeOrchestrator:
+            async def handle_intent(self, intent, **options):
+                assert options["fresh_session"] and options["persistence_guard"]()
+                token = ShoppingContext.set(ShoppingContextSnapshot(intent.shopping_session_id, intent.buyer_id, intent.locale, intent.currency))
+    
+                async def next_model(**_kwargs):
+                    return ChatResponse(content=[TextBlock(text=SECRET)], is_last=True,
+                        usage=ChatUsage(input_tokens=13, output_tokens=7, time=0.1))
+    
+                async def next_tool(**_kwargs):
+                    yield {"result": SECRET}
+    
+                async def next_reply(**_kwargs):
+                    await middleware.on_model_call(agent, {"current_model": model, "messages": [{"role": "user", "content": SECRET}]}, next_model)
+                    async for _result in middleware.on_acting(agent,
+                        {"tool_call": ToolCallBlock(id="tool-test", name="product_search_tool", input=json.dumps({"query": SECRET}))}, next_tool):
+                        pass
+                    yield AssistantMsg("TraceTestAgent", SECRET)
+    
+                try:
+                    async for _message in middleware.on_reply(agent, {"inputs": UserMsg("buyer", SECRET)}, next_reply):
+                        pass
+                    bus.publish(intent.shopping_session_id, "final.result", {"final_text": SECRET})
+                    return SimpleNamespace(error=None, final_text=SECRET)
+                finally:
+                    ShoppingContext.reset(token)
+    
+        monkeypatch.setattr(worker, "current_execution_lease", lambda: SimpleNamespace(is_valid=lambda: True))
+        assert await worker.execute_intent_task(task, NativeOrchestrator(), bus) == SECRET
+        assert await asyncio.to_thread(traced.provider.force_flush, 5000)
+        exported = spans(traced.collector.captured)
+        assert len(exported) == 5
+        root = next(span for span in exported if span.name == "POST /commerce/intents/async")
+        consume = next(span for span in exported if span.name == "commerce.intent.consume")
+        agent_span = next(span for span in exported if span.name == "invoke_agent TraceTestAgent")
+        model_span = next(span for span in exported if span.name == "chat primary-model")
+        tool_span = next(span for span in exported if span.name == "execute_tool product_search_tool")
+        assert consume.parent_span_id == root.span_id
+        assert agent_span.parent_span_id == consume.span_id
+        assert model_span.parent_span_id == tool_span.parent_span_id == agent_span.span_id
+        assert {span.trace_id for span in exported} == {root.trace_id}
+        assert attributes(model_span)["gen_ai.usage.input_tokens"] == 13
+        assert attributes(model_span)["gen_ai.usage.output_tokens"] == 7
+        assert attributes(model_span)["langfuse.observation.type"] == "generation"
+        for span in exported:
+            attrs = attributes(span)
+            assert attrs["smartlect.request_id"] == task.request_id
+            assert attrs["smartlect.task_id"] == task.task_id
+            assert attrs["langfuse.session.id"].startswith("sha256:")
+        for path, headers, _batch, wire in traced.collector.captured:
+            assert path == "/api/public/otel/v1/traces"
+            assert headers["Authorization"] == traced.authentication
+>           assert headers["x-langfuse-ingestion-version"] == "4"
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           KeyError: 'x-langfuse-ingestion-version'
+
+tests/test_tracing.py:235: KeyError
+=============================== warnings summary ===============================
+.venv/lib/python3.11/site-packages/fastapi/testclient.py:1
+  /home/song/code/Agent/multi-agent/smartlect/.venv/lib/python3.11/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+    from starlette.testclient import TestClient as TestClient  # noqa
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/test_langfuse_verification.py::test_derived_config_uses_real_otlp_sanitizer_and_v4_http
+FAILED tests/test_tracing.py::test_otlp_real_http_path_auth_and_native_agentscope_parent_chain
+2 failed, 1465 passed, 1 skipped, 1 warning in 321.16s (0:05:21)
+------------------------------------------------------------
+finished_at: 2026-10-01T01:35:05+08:00
+EXIT=1

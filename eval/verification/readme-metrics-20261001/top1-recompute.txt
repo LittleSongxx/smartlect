@@ -1,0 +1,12 @@
+商品召回正式门禁（复算值，非报告字段）
+product-recall-fixed-arch-k3-v2  K=3  selected=225  buckets={'composite': 55, 'empty': 70, 'literal': 63, 'semantic': 37}
+  策略 embedding_rerank: R@1 = 155/155 = 1.0000
+product-recall-v1-release-k3-gate  K=3  selected=45  buckets={'composite': 12, 'empty': 8, 'literal': 13, 'semantic': 12}
+  策略 embedding_rerank: R@1 = 35/37 = 0.9459
+
+品类知识召回门禁（复算值，非报告字段）
+category-recall-fixed-k3-v2  K=3  n=22
+  标准文档被排在第 1 位: R@1 = 21/22 = 0.9545
+
+对照：体检集 semantic 桶在 K=8 下的 MRR（README 旧稿曾把 0.811 误标成商品召回 R@1）
+  product-recall-final semantic 桶 n=12 MRR=0.8111
